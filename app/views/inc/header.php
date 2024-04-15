@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>RoyalUI Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="./../public/assets/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="./../public/assets/vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="assets/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="./../public/assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="./public/images/favicon.png" />
+  <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
   <div class="container-scroller">
