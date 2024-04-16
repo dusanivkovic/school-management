@@ -1,0 +1,9 @@
+{
+    "name": "dusan/school-management",
+    "autoload": {
+        "psr-4": {
+            "app\\models\\": ".//app//models"
+        }
+    },
+    "require": {}
+}

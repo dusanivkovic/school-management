@@ -1,3 +1,10 @@
+<?php 
+use app\models\Model;
+use app\form\Form;
+
+$form = new Form();
+
+?>
 <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
         <div class="row flex-grow">
