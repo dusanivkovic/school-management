@@ -8,7 +8,7 @@ abstract class BaseField
     public string $attribute;
     public string $type;
 
-    public function __construct($model, $attribute)
+    public function __construct(Model $model, string $attribute)
     {
         $this->model = $model;
         $this->attribute = $attribute;

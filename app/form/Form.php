@@ -10,7 +10,7 @@ class form
         foreach ($options as $key => $value) {
             $attributes[] = "$key=\"$value\"";
         }
-        echo sprintf('<form action="%s" method="%s" %s>', $action, $method, implode(" ", $attributes));
+        echo sprintf('<form action="%s" method="%s" %s class="pt-3">', $action, $method, implode(" ", $attributes));
         return new Form();
     }
 
