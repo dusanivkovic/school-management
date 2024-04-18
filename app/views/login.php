@@ -3,10 +3,11 @@ require_once __DIR__ . './../../vendor/autoload.php';
 use app\models\Model;
 use app\form\Form;
 
-$model = new Model();
+// $model = new Model();
+$form = new Form();
 
 
-Model::prntR($model);
+Model::prntR($form);
 ?>
 <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
@@ -18,7 +19,7 @@ Model::prntR($model);
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
-              <?php ## $form = Form::begin('', 'post') ?>
+              <?php  ##$form = Form::begin('', 'post') ?>
 
               <form class="pt-3" method="post" action="../app/controllers/loginControlers.php">
                 <div class="form-group">
