@@ -1,29 +1,29 @@
 <?php
 namespace app\models;
-use app\models\Format;
+use app\models\Db;
 
-class Model 
+class RegisterModel 
 {
     const FULL_NAME = 'Name is required';
     const PASSWORD_REQUIRED = 'Password is required';
     const PASSWORD_MIN = 'Password must be at least 8 characters long';
     const EMAIL_REQUIRED = 'Email is required';
+    const PASSWORD_MATCH = 'Password does not match';
     const EMAIL_FORMAT = 'Invalid email format';
     public array $errors = [];
+    public array $data = [];
+    //public Db $db;
 
-    public function labels()
+    public function __construct($postData)
     {
-        return [];
+        $this->data =  $postData;
     }
 
-    public function getLabel($attribute)
+    public  function loadData($postData)
     {
-        return $this->labels()[$attribute] ?? $attribute;
+        $this->data = $postData;
+        //return self::$data;
     }
-    // protected function validateFirstname() {
-    //     $fullName = $this->fm->validation($this->data['fullname']);
-    //     empty($fullName) ? $this->addError('fullname', self::FULL_NAME) : '';
-    // }
 
     public function hasError ($attribute)
     {
