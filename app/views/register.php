@@ -1,4 +1,7 @@
+<?php
 
+
+?>
 <form class="pt-3" method="post" action="../app/views/signUpView.php">
   <div class="form-group">
     <label>Ime i prezime</label>

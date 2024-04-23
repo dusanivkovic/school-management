@@ -14,10 +14,10 @@ class RegisterModel
     public array $data = [];
     //public Db $db;
 
-    public function __construct($postData)
-    {
-        $this->data =  $postData;
-    }
+    // public function __construct($postData)
+    // {
+    //     $this->data =  $postData;
+    // }
 
     public  function loadData($postData)
     {

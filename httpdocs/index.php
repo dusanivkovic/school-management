@@ -14,7 +14,7 @@ $page = $_GET['page'] ?? false;
                         <h4>Welcome back!</h4>
                         <h6 class="font-weight-light">Happy to see you again!</h6>
                         <?php 
-                            !$page ? require_once __DIR__ . './inc/login.php': require_once __DIR__ . './inc/register.php';
+                            $page == 'register' ? require_once __DIR__. '/../app/views/register.php' : require_once __DIR__. '/../app/views/login.php';
                         ?>
                     </div>
                 </div>

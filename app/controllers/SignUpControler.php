@@ -11,7 +11,7 @@ class SignUpControler extends RegisterModel
     public string $subject;
     public string $classTeacher;
     public RegisterModel $rm;
-    public function __construct($postData)
+    public function __construct()
     {
         // $this->fullName = $fullName;
         // $this->email = $email;
@@ -19,7 +19,9 @@ class SignUpControler extends RegisterModel
         // $this->subject = $subject;
         // $this->classTeacher = $classTeacher;
         //parent::__construct($postData);  
-        $this->loadData($postData);
+
+        $this->rm = new RegisterModel();
+
     }
 
     public function validation($postData)
@@ -32,43 +34,43 @@ class SignUpControler extends RegisterModel
     }
 
     protected function validateFullname() {
-        $fullName = $this->validation($this->data['fullname']);
-        empty($fullName) ? self::addError('fullname', self::FULL_NAME) : '';
+        $fullName = $this->validation($this->rm->data['fullname']);
+        empty($fullName) ? $this->rm->addError('fullname', self::FULL_NAME) : '';
     }
 
     protected function validateEmail() {
-        $email = $this->validation($this->data['email']);
+        $email = $this->validation($this->rm->data['email']);
         if (empty($email)) 
         {
-            self::addError('email-empty', self::EMAIL_REQUIRED);
+            $this->rm->addError('email-empty', self::EMAIL_REQUIRED);
         }elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            self::addError('email-format', self::EMAIL_FORMAT);
+            $this->rm->addError('email-format', self::EMAIL_FORMAT);
         }
     }
 
     protected function validatePassword() {
-        $password = $this->data['password'];
+        $password = $this->rm->data['password'];
 
         if (empty($password)) {
-            $this->addError('password', self::PASSWORD_REQUIRED);
+            $this->rm->addError('password', self::PASSWORD_REQUIRED);
         } elseif (strlen($password) < 8) {
-            $this->addError('password', self::PASSWORD_MIN);
+            $this->rm->addError('password', self::PASSWORD_MIN);
         }
     }
 
     protected function validatePasswordMatch ()
     {
-        $password = $this->data['password'];
-        $confirmPassword = $this->data['passwordConfirm'];
-        $password !== $confirmPassword ? $this->addError('confirm', self::PASSWORD_MATCH) : '';
+        $password = $this->rm->data['password'];
+        $confirmPassword = $this->rm->data['passwordConfirm'];
+        $password !== $confirmPassword ? $this->rm->addError('confirm', self::PASSWORD_MATCH) : '';
     }
 
-    public function signUp()
+    public function signUpUser()
     {
 		$this->validateFullname();
 		$this->validateEmail();
         $this->validatePassword();
         $this->validatePasswordMatch();
-        return $this->errors;
+        return $this->rm->errors;
 	}
 }

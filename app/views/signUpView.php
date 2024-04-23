@@ -10,15 +10,21 @@ if (isset($_POST['submit']))
     $email = $_POST['email'];
     $subject = $_POST['subject'];
     $classTeacher = $_POST['classteacher'];
+
+
+    //Instantiate SignUpController class
+    $signup = new SignUpControler($_POST);
+        //Grabbing the data
+    $signup->rm->loadData($_POST);
+    $signup->signUpUser();
+
+
+    //Running error handlers and user signup
+    if ($signup->rm->hasError('fullname'))
+    {
+        RegisterModel::prntR($signup);
+        // header('location: ../../httpdocs/index.php?error=fullname');
+    }
+
+    //going back to front page
 }
-
-//Grabbing the data
-$signup = new SignUpControler($_POST);
-RegisterModel::prntR($signup);
-//$signup->loadData($_POST);
-
-//Instantiate SignUpController class
-
-//Running error handlers and user signup
-
-//going back to front page
