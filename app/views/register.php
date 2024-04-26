@@ -25,12 +25,42 @@ if (isset($_POST['submit']))
     //Running error handlers and user signup
     if ($signup->rm->hasError('fullname'))
     {
-        RegisterModel::prntR($signup);
-        header('location: ../../httpdocs/index.php?page=register');
-        exit;
+      RegisterModel::prntR($signup);
+      header('location: ../../httpdocs/index.php?page=register&error=fullname');
+      exit;
     }
 
-    header('location: ../../httpdocs/index.php?error=none');
+    if ($signup->rm->hasError('email-empty'))
+    {
+      RegisterModel::prntR($signup);
+      header('location: ../../httpdocs/index.php?page=register&error=email-empty');
+      exit;
+    }
+
+    if ($signup->rm->hasError('email-format'))
+    {
+      RegisterModel::prntR($signup);
+      header('location: ../../httpdocs/index.php?page=register&error=email-format');
+      exit;
+    }
+
+    if ($signup->rm->hasError('password'))
+    {
+      RegisterModel::prntR($signup);
+      header('location: ../../httpdocs/index.php?page=register&error=password');
+      exit;
+    }
+
+    if ($signup->rm->hasError('confirm'))
+    {
+      RegisterModel::prntR($signup);
+      header('location: ../../httpdocs/index.php?page=register&error=confirm');
+      exit;
+    }
+
+    
+
+    header('location: ../../httpdocs/dashboard.php');
 
     //going back to front page
 }
@@ -106,7 +136,7 @@ if (isset($_POST['submit']))
     <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Already have an account? <a href="index.php" class="text-primary">Login</a>
+    Already have an account? <a href="index.php?page=login" class="text-primary">Login</a>
   </div>
 </form>
 

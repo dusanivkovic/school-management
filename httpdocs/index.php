@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . './inc/header.php';
-$page = $_GET['page'] ?? false;
+if (isset($_GET['page']))
+{
+    $page = $_GET['page'];
+}
+
 ?>
 <div class="container-fluid page-body-wrapper full-page-wrapper">
     <div class="d-flex col-12 flex-column">
