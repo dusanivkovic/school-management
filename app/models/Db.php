@@ -4,7 +4,6 @@ require_once __DIR__ .'/../config/config.php';
 
 use mysqli;
 
-
 class Db 
 {
   public $host = DB_HOST;

@@ -33,7 +33,7 @@ if (isset($_POST['submit']))
     if ($signup->rm->hasError('email-empty'))
     {
       RegisterModel::prntR($signup);
-      header('location: ../../httpdocs/index.php?page=register&error=email-empty');
+      //header('location: ../../httpdocs/index.php?page=register&error=email-empty');
       exit;
     }
 

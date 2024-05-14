@@ -2,7 +2,7 @@
 namespace app\models;
 use app\models\Db;
 
-class RegisterModel 
+class RegisterModel extends Db
 {
     const FULL_NAME = 'Name is required';
     const PASSWORD_REQUIRED = 'Password is required';
