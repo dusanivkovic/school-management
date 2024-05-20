@@ -2,70 +2,16 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 use app\models\{Db, RegisterModel};
 use app\controllers\SignUpControler;
+use app\helpers\Session;
 
-
-
-if (isset($_POST['submit']))
-{
-    $fullName = $_POST['fullname'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $classTeacher = $_POST['classteacher'];
-
-
-    //Instantiate SignUpController class
-    $signup = new SignUpControler($_POST);
-        //Grabbing the data
-    $signup->rm->loadData($_POST);
-    $signup->signUpUser();
-
-    $hasErrorUserName = $signup->rm->hasError('fullname');
-    var_dump($hasErrorUserName);
-    //Running error handlers and user signup
-    if ($signup->rm->hasError('fullname'))
-    {
-      RegisterModel::prntR($signup);
-      header('location: ../../httpdocs/index.php?page=register&error=fullname');
-      exit;
-    }
-
-    if ($signup->rm->hasError('email-empty'))
-    {
-      RegisterModel::prntR($signup);
-      //header('location: ../../httpdocs/index.php?page=register&error=email-empty');
-      exit;
-    }
-
-    if ($signup->rm->hasError('email-format'))
-    {
-      RegisterModel::prntR($signup);
-      header('location: ../../httpdocs/index.php?page=register&error=email-format');
-      exit;
-    }
-
-    if ($signup->rm->hasError('password'))
-    {
-      RegisterModel::prntR($signup);
-      header('location: ../../httpdocs/index.php?page=register&error=password');
-      exit;
-    }
-
-    if ($signup->rm->hasError('confirm'))
-    {
-      RegisterModel::prntR($signup);
-      header('location: ../../httpdocs/index.php?page=register&error=confirm');
-      exit;
-    }
-
-    
-
-    header('location: ../../httpdocs/dashboard.php');
-
-    //going back to front page
-}
+Session::prntR(Session::get('fullname'));
+Session::prntR(Session::get('email-empty'));
+Session::prntR(Session::get('password'));
+Session::prntR(Session::get('email-format'));
+Session::prntR(Session::get('password-confirm'));
+Session::prntR(Session::get('password-min'));
 ?>
-<form class="pt-3" method="post" action="../app/views/register.php">
+<form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
   <div class="form-group">
     <label>Ime i prezime</label>
     <div class="input-group">
@@ -74,7 +20,7 @@ if (isset($_POST['submit']))
           <i class="ti-user text-primary"></i>
         </span>
       </div>
-      <input name="fullname" type="text" class="form-control form-control-lg border-left-0 <?php echo $hasErrorUserName ?? 'is-invalid'; ?>" placeholder="Ime i prezime" value="<?php ##echo $hasErrorUserName ?? 'Ime i prezime'?>">
+      <input name="fullname" type="text" class="form-control form-control-lg border-left-0 <?php ##echo $hasErrorUserName ?? 'is-invalid'; ?>" placeholder="Ime i prezime" value="<?php ##echo $hasErrorUserName ?? 'Ime i prezime'?>">
     </div>
   </div>
   <div class="form-group">

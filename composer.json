@@ -5,7 +5,8 @@
             "app\\models\\": ".//app//models",
             "app\\form\\": ".//app//form",
             "app\\views\\": ".//app//views",
-            "app\\controllers\\": ".//app//controllers"
+            "app\\controllers\\": ".//app//controllers",
+            "app\\helpers\\": ".//app//helpers"
         }
     },
     "require": {}

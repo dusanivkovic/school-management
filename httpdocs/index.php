@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . './inc/header.php';
+$page = 'login';
 if (isset($_GET['page']))
 {
     $page = $_GET['page'];

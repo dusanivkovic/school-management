@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace app\helpers;
 require_once __DIR__ .'/../config/config.php';
 
 use mysqli;
@@ -11,6 +11,8 @@ class Db
   public $password = DB_PASSWORD;
   public $dataBase = DB_NAME;
   public $conn;
+  protected $error;
+  public $stmt;
 
 
   public function __construct()
@@ -21,6 +23,10 @@ class Db
   private function conect()
   {
     $this->conn = new mysqli($this->host, $this->user, $this->password, $this->dataBase);
-    // $this->errors = $this->conn->connect_error ?('Connection fail: '.$this->conn->connect_errno) : '';
+    $this->error = $this->conn->connect_error ?('Connection fail: '.$this->conn->connect_errno) : '';
+  }
+  public function query($sql)
+  {
+    return $this->stmt = $this->conn->prepare($sql);
   }
 }
