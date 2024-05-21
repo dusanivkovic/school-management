@@ -5,6 +5,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use app\helpers\Session;
 use app\models\RegisterModel;
 
+use const app\helpers\FLASH_ERROR;
+use const app\helpers\FLASH_INFO;
 
 class SignUpControler
 {
@@ -33,6 +35,11 @@ class SignUpControler
   {
     $fullName = $this->validation($this->rm->data['fullname']);
     empty($fullName) ? $this->rm->addError('fullname', self::FULL_NAME) : '';
+    if (empty($fullName))
+    {
+      Session::flash('register', self::FULL_NAME, FLASH_INFO);
+      Session::redirect('../../httpdocs/index.php?page=register');
+    }
   }
 
   protected function validateEmail() 
@@ -92,14 +99,14 @@ if (isset($_POST['submit']))
   $signup->signUpUser();
 
   //Running error handlers and user signup
-  if ($signup->rm->hasError('fullname'))
-  {
-    Session::set('fullname', $signup::FULL_NAME);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('fullname');
-  }
+  // if ($signup->rm->hasError('fullname'))
+  // {
+  //   Session::set('fullname', $signup::FULL_NAME);
+  //   Session::redirect('../../httpdocs/index.php?page=register');
+  // }else
+  // {
+  //   Session::unset('fullname');
+  // }
 
   if ($signup->rm->hasError('email-empty'))
   {

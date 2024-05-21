@@ -4,12 +4,17 @@ use app\models\{Db, RegisterModel};
 use app\controllers\SignUpControler;
 use app\helpers\Session;
 
-Session::prntR(Session::get('fullname'));
-Session::prntR(Session::get('email-empty'));
-Session::prntR(Session::get('password'));
-Session::prntR(Session::get('email-format'));
-Session::prntR(Session::get('password-confirm'));
-Session::prntR(Session::get('password-min'));
+use const app\helpers\FLASH_INFO;
+
+// Session::prntR(Session::get('fullname'));
+// Session::prntR(Session::get('email-empty'));
+// Session::prntR(Session::get('password'));
+// Session::prntR(Session::get('email-format'));
+// Session::prntR(Session::get('password-confirm'));
+// Session::prntR(Session::get('password-min'));
+Session::flash('greating', 'Hi there', FLASH_INFO);
+Session::flash('greating');
+Session::flash('register');
 ?>
 <form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
   <div class="form-group">
