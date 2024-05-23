@@ -26,17 +26,20 @@ class RegisterModel extends Db
         //return self::$data;
     }
 
-    public function findUserByEmail ($postData) 
+    public function findUserByEmail ($postData): bool
     {
         $sql = "SELECT * FROM teachers WHERE email = ?";
         $stmt = $this->db->query($sql);
         $stmt->bind_param('s', $postData['email']);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->num_rows > 1 ? true : false;
+        $stmt->close();
+        $this->db->conn->close();
+        print_r($result->num_rows);
+        return $result->num_rows > 0 ? true : false;
     }
 
-    public function registerUser ($postData)
+    public function registerUser ($postData): bool
     {
         $hashPassword = password_hash($postData['password'], PASSWORD_DEFAULT);
         $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `subject`, `class_teacher`) VALUES (?, ?, ?, ?, ?)';

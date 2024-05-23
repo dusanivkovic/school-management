@@ -8,6 +8,7 @@ use app\models\RegisterModel;
 use const app\helpers\FLASH_ERROR;
 use const app\helpers\FLASH_INFO;
 use const app\helpers\FLASH_SUCCESS;
+use const app\helpers\FLASH_WARNING;
 
 class SignUpControler
 {
@@ -34,9 +35,9 @@ class SignUpControler
     return $data;
   }
 
-  protected function validateFullname() 
+  protected function validateFullname($data) : void
   {
-    $fullName = $this->validationData($this->rm->data['fullname']);
+    $fullName = $this->validationData($data['fullname']);
     empty($fullName) ? $this->rm->addError('fullname', self::FULL_NAME) : '';
     if (empty($fullName))
     {
@@ -45,9 +46,9 @@ class SignUpControler
     }
   }
 
-  protected function validateEmail() 
+  protected function validateEmail($data) : void
   {
-    $email = $this->validationData($this->rm->data['email']);
+    $email = $this->validationData($data['email']);
     if (empty($email)) 
     {
       $this->rm->addError('email-empty', self::EMAIL_REQUIRED);
@@ -61,9 +62,9 @@ class SignUpControler
     }
   }
 
-  protected function validatePassword() 
+  protected function validatePassword($data) : void
   {
-    $password = $this->validationData($this->rm->data['password']);
+    $password = $this->validationData($data['password']);
 
     if (empty($password)) 
     {
@@ -77,10 +78,10 @@ class SignUpControler
     }
   }
 
-  protected function validatePasswordMatch ()
+  protected function validatePasswordMatch ($data): void
   {
-    $password = $this->validationData($this->rm->data['password']);
-    $confirmPassword = $this->validationData($this->rm->data['passwordConfirm']);
+    $password = $this->validationData($data['password']);
+    $confirmPassword = $this->validationData($data['passwordConfirm']);
     $password !== $confirmPassword ? $this->rm->addError('confirm', self::PASSWORD_MATCH) : '';
     if ($password !== $confirmPassword)
     {
@@ -89,24 +90,34 @@ class SignUpControler
     }
   }
 
-  protected function validation (): void
+  protected function validation ($data): void
   {
-    $this->validateFullname();
-    $this->validateEmail();
-    $this->validatePassword();
-    $this->validatePasswordMatch();
+    $this->validateFullname($data);
+    $this->validateEmail($data);
+    $this->validatePassword($data);
+    $this->validatePasswordMatch($data);
+  }
+
+  protected function chackIfUserExists ()
+  {
+    if ($this->rm->findUserByEmail($this->rm->data));
+    {
+      Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
+      exit;
+    }
   }
 
 
-  public function signUpUser()
+  public function signUpUser(): void
   {
-    $this->validation();
+    $this->validation($this->rm->data);
     if (empty($this->rm->errors))
     {
       if ($this->rm->findUserByEmail($this->rm->data));
       {
         Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
-        Session::redirect('../../httpdocs/index.php?page=register');
+        // Session::redirect('../../httpdocs/index.php?page=register');
         exit;
       }
       if ($this->rm->registerUser($this->rm->data))
@@ -114,7 +125,10 @@ class SignUpControler
         Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
         Session::set('user', $this->rm->data['fullname']);
         // Session::redirect('../../httpdocs/index.php?page=register');
-        Session::redirect('../../httpdocs/dashboard.php');
+        Session::redirect('../../httpdocs/index.php');
+      }else
+      {
+        Session::flash('register', 'Something went wrong!', FLASH_WARNING);
       }
     }
 	}
@@ -130,8 +144,6 @@ if (isset($_POST['submit']))
   $signup->rm->loadData($_POST);
   //Running error handlers and user signup
   $signup->signUpUser();
-
-
-
+  //Session::prntR($signup->rm->findUserByEmail($_POST['email']));
   //going back to front page
 }
