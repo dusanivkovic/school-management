@@ -26,25 +26,24 @@ class RegisterModel extends Db
         //return self::$data;
     }
 
-    public function findUserByEmail ($postData): bool
+    public function findUserByEmail (): bool
     {
         $sql = "SELECT * FROM teachers WHERE email = ?";
         $stmt = $this->db->query($sql);
-        $stmt->bind_param('s', $postData['email']);
+        $stmt->bind_param('s', $this->data['email']);
         $stmt->execute();
         $result = $stmt->get_result();
-        $stmt->close();
-        $this->db->conn->close();
-        print_r($result->num_rows);
+        // $stmt->close();
+        // $this->db->conn->close();
         return $result->num_rows > 0 ? true : false;
     }
 
-    public function registerUser ($postData): bool
+    public function registerUser (): bool
     {
-        $hashPassword = password_hash($postData['password'], PASSWORD_DEFAULT);
+        $hashPassword = password_hash($this->data['password'], PASSWORD_DEFAULT);
         $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `subject`, `class_teacher`) VALUES (?, ?, ?, ?, ?)';
         $stmt = $this->db->query($sql);
-        $stmt->bind_param('sssss', $postData['fullname'], $postData['email'], $hashPassword, $postData['subject'], $postData['classteacher']);
+        $stmt->bind_param('sssss', $this->data['fullname'], $this->data['email'], $hashPassword, $this->data['subject'], $this->data['classteacher']);
         // $stmt->close();
         // $this->db->conn->close();
 

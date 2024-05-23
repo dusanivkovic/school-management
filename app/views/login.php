@@ -1,4 +1,14 @@
+<?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+use app\models\{Db, RegisterModel};
+use app\controllers\SignUpControler;
+use app\helpers\Session;
 
+use const app\helpers\FLASH_INFO;
+
+Session::flash();
+
+?>
 <form class="pt-3" method="post" action="../app/controllers/loginControler.php">
   <div class="form-group">
     <label for="exampleInputEmail">Email</label>
