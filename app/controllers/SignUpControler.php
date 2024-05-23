@@ -7,15 +7,18 @@ use app\models\RegisterModel;
 
 use const app\helpers\FLASH_ERROR;
 use const app\helpers\FLASH_INFO;
+use const app\helpers\FLASH_SUCCESS;
 
 class SignUpControler
 {
-  const FULL_NAME = 'Name is required';
-  const PASSWORD_REQUIRED = 'Password is required';
-  const PASSWORD_MIN = 'Password must be at least 8 characters long';
-  const EMAIL_REQUIRED = 'Email is required';
-  const PASSWORD_MATCH = 'Password does not match';
-  const EMAIL_FORMAT = 'Invalid email format';
+  protected const FULL_NAME = 'Name is required';
+  protected const PASSWORD_REQUIRED = 'Password is required';
+  protected const PASSWORD_MIN = 'Password must be at least 8 characters long';
+  protected const EMAIL_REQUIRED = 'Email is required';
+  protected const PASSWORD_MATCH = 'Password does not match';
+  protected const EMAIL_FORMAT = 'Invalid email format';
+  protected const USER_EXISTS = 'Username or email already taken';
+  const SUCCESS_REGISTRATION = 'Registration success!';
   public RegisterModel $rm;
 
   public function __construct()
@@ -23,7 +26,7 @@ class SignUpControler
     $this->rm = new RegisterModel();
   }
 
-  public function validation($postData)
+  public function validationData($postData)
   {
     $data = trim($postData);
     $data = stripcslashes($postData);
@@ -33,132 +36,102 @@ class SignUpControler
 
   protected function validateFullname() 
   {
-    $fullName = $this->validation($this->rm->data['fullname']);
+    $fullName = $this->validationData($this->rm->data['fullname']);
     empty($fullName) ? $this->rm->addError('fullname', self::FULL_NAME) : '';
     if (empty($fullName))
     {
-      Session::flash('register', self::FULL_NAME, FLASH_INFO);
+      Session::flash('name-empty', self::FULL_NAME, FLASH_ERROR);
       Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
   protected function validateEmail() 
   {
-    $email = $this->validation($this->rm->data['email']);
+    $email = $this->validationData($this->rm->data['email']);
     if (empty($email)) 
     {
       $this->rm->addError('email-empty', self::EMAIL_REQUIRED);
+      Session::flash('email-empty', self::EMAIL_REQUIRED, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
     }elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     {
       $this->rm->addError('email-format', self::EMAIL_FORMAT);
+      Session::flash('email-format', self::EMAIL_FORMAT, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
   protected function validatePassword() 
   {
-    $password = $this->rm->data['password'];
+    $password = $this->validationData($this->rm->data['password']);
 
     if (empty($password)) 
     {
       $this->rm->addError('password', self::PASSWORD_REQUIRED);
+      Session::flash('password-empty', self::PASSWORD_REQUIRED, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
     } elseif (strlen($password) < 8) {
       $this->rm->addError('password-min', self::PASSWORD_MIN);
+      Session::flash('password-min', self::PASSWORD_MIN, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
   protected function validatePasswordMatch ()
   {
-    $password = $this->rm->data['password'];
-    $confirmPassword = $this->rm->data['passwordConfirm'];
+    $password = $this->validationData($this->rm->data['password']);
+    $confirmPassword = $this->validationData($this->rm->data['passwordConfirm']);
     $password !== $confirmPassword ? $this->rm->addError('confirm', self::PASSWORD_MATCH) : '';
+    if ($password !== $confirmPassword)
+    {
+      Session::flash('password-match', self::PASSWORD_MATCH, FLASH_ERROR);
+      Session::redirect('../../httpdocs/index.php?page=register');
+    }
   }
 
-  public function signUpUser()
+  protected function validation (): void
   {
     $this->validateFullname();
     $this->validateEmail();
     $this->validatePassword();
     $this->validatePasswordMatch();
-    return $this->rm->errors;
+  }
+
+
+  public function signUpUser()
+  {
+    $this->validation();
+    if (empty($this->rm->errors))
+    {
+      if ($this->rm->findUserByEmail($this->rm->data));
+      {
+        Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
+        Session::redirect('../../httpdocs/index.php?page=register');
+        exit;
+      }
+      if ($this->rm->registerUser($this->rm->data))
+      {
+        Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
+        Session::set('user', $this->rm->data['fullname']);
+        // Session::redirect('../../httpdocs/index.php?page=register');
+        Session::redirect('../../httpdocs/dashboard.php');
+      }
+    }
 	}
 }
 
 if (isset($_POST['submit']))
 {
-  // $fullName = $_POST['fullname'];
-  // $password = $_POST['password'];
-  // $email = $_POST['email'];
-  // $subject = $_POST['subject'];
-  // $classTeacher = $_POST['classteacher'];
   Session::init();
 
   //Instantiate SignUpController class
   $signup = new SignUpControler();
   //Grabbing the data
   $signup->rm->loadData($_POST);
+  //Running error handlers and user signup
   $signup->signUpUser();
 
-  //Running error handlers and user signup
-  // if ($signup->rm->hasError('fullname'))
-  // {
-  //   Session::set('fullname', $signup::FULL_NAME);
-  //   Session::redirect('../../httpdocs/index.php?page=register');
-  // }else
-  // {
-  //   Session::unset('fullname');
-  // }
 
-  if ($signup->rm->hasError('email-empty'))
-  {
-    Session::set('email-empty', $signup::EMAIL_REQUIRED);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('email-empty');
-  }
 
-  if ($signup->rm->hasError('email-format'))
-  {
-    Session::set('email-format', $signup::EMAIL_FORMAT);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('email-format');
-  }
-
-  if ($signup->rm->hasError('password'))
-  {
-    Session::set('password', $signup::PASSWORD_REQUIRED);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('password');
-  }
-
-  if ($signup->rm->hasError('confirm'))
-  {
-    Session::set('password-confirm', $signup::PASSWORD_MATCH);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('password-confirm');
-  }
-
-  if ($signup->rm->hasError('password-min'))
-  {
-    Session::set('password-min', $signup::PASSWORD_MIN);
-    Session::redirect('../../httpdocs/index.php?page=register');
-  }else
-  {
-    Session::unset('password-min');
-  }
-
-  if (empty($signup->rm->errors))
-  {
-    $signup->rm->registerUser();
-    Session::prntR($signup);
-    exit;
-    header('location: ../../httpdocs/dashboard.php');
-  }
   //going back to front page
 }

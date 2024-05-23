@@ -6,15 +6,14 @@ use app\helpers\Session;
 
 use const app\helpers\FLASH_INFO;
 
-// Session::prntR(Session::get('fullname'));
-// Session::prntR(Session::get('email-empty'));
-// Session::prntR(Session::get('password'));
-// Session::prntR(Session::get('email-format'));
-// Session::prntR(Session::get('password-confirm'));
-// Session::prntR(Session::get('password-min'));
-Session::flash('greating', 'Hi there', FLASH_INFO);
-Session::flash('greating');
-Session::flash('register');
+// Session::flash('name-empty');
+// Session::flash('email-empty');
+// Session::flash('email-format');
+// Session::flash('password-empty');
+// Session::flash('password-min');
+// Session::flash('password-match');
+Session::flash();
+
 ?>
 <form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
   <div class="form-group">

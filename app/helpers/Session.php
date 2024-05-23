@@ -2,7 +2,7 @@
 namespace app\helpers;
 
 const FLASH = 'FLASH_MESSAGES';
-const FLASH_ERROR = 'error';
+const FLASH_ERROR = 'danger';
 const FLASH_WARNING = 'warning';
 const FLASH_INFO = 'info';
 const FLASH_SUCCESS = 'success';
@@ -48,7 +48,8 @@ class Session
             unset($_SESSION[FLASH][$name]);
         }
         // add the message to the session
-        $_SESSION[FLASH][$name] = ['message' => $message, 'type' => $type];
+        $_SESSION[FLASH][$name] = ['message' => $message, 'type' => $type];   
+
     }
 
     public static function format_flash_message(array $flash_message): string
@@ -58,6 +59,7 @@ class Session
         $flash_message['message']
         );
     }
+
 
     public static function display_flash_message(string $name): void
     {

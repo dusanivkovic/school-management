@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 use app\helpers\Db;
+use app\helpers\Session;
 
 class RegisterModel extends Db
 {
@@ -12,7 +13,7 @@ class RegisterModel extends Db
     // const EMAIL_FORMAT = 'Invalid email format';
     public array $errors = [];
     public array $data = [];
-    public Db $db;
+    private Db $db;
 
     public function __construct()
     {
@@ -25,18 +26,26 @@ class RegisterModel extends Db
         //return self::$data;
     }
 
-    public function registerUser ()
+    public function findUserByEmail ($postData) 
     {
+        $sql = "SELECT * FROM teachers WHERE email = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('s', $postData['email']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 1 ? true : false;
+    }
+
+    public function registerUser ($postData)
+    {
+        $hashPassword = password_hash($postData['password'], PASSWORD_DEFAULT);
         $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `subject`, `class_teacher`) VALUES (?, ?, ?, ?, ?)';
         $stmt = $this->db->query($sql);
-        $hashPassword = password_hash($this->data['password'], PASSWORD_DEFAULT);
-        $stmt->bind_param('sssss', $this->data['fullname'], $this->data['email'], $hashPassword, $this->data['subject'], $this->data['classteacher']);
-        $stmt->execute();
+        $stmt->bind_param('sssss', $postData['fullname'], $postData['email'], $hashPassword, $postData['subject'], $postData['classteacher']);
         // $stmt->close();
         // $this->db->conn->close();
-        echo $this->db->stmt->execute() ? "<span style='color: green'>Registration Successful!</span>" : "<span style='color: red'>Registration Unsuccessful!</span>";
 
-        // return $this->db->stmt->execute() ? true : false;
+        return $this->db->stmt->execute() ? true : false;
     }
 
     public function hasError ($attribute)
