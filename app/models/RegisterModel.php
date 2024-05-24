@@ -26,16 +26,17 @@ class RegisterModel extends Db
         //return self::$data;
     }
 
-    public function findUserByEmail (): bool
+    public function findUserByEmail ()
     {
         $sql = "SELECT * FROM teachers WHERE email = ?";
         $stmt = $this->db->query($sql);
         $stmt->bind_param('s', $this->data['email']);
         $stmt->execute();
         $result = $stmt->get_result();
-        // $stmt->close();
+        $user = $result->fetch_assoc();
+        $stmt->close();
         // $this->db->conn->close();
-        return $result->num_rows > 0 ? true : false;
+        return $result->num_rows > 0 ? $user : false;
     }
 
     public function registerUser (): bool
@@ -48,6 +49,15 @@ class RegisterModel extends Db
         // $this->db->conn->close();
 
         return $this->db->stmt->execute() ? true : false;
+    }
+
+    public function checkUserExsist ()
+    {
+        $password = $this->data['password'];
+        $user = $this->findUserByEmail();
+        $hashPassword = $user['password'];
+        $verify = password_verify($password, $hashPassword);
+        return ($user && $verify) ? true : false;
     }
 
     public function hasError ($attribute)

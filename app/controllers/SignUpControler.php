@@ -94,26 +94,25 @@ class SignUpControler
   {
     //Grabbing the data
     $this->rm->loadData($_POST);
+    //Running error handlers and user signup
     $this->validateFullname();
     $this->validateEmail();
     $this->validatePassword();
     $this->validatePasswordMatch();
   }
 
-  protected function chackIfUserExists ()
+  public function loginValidation (): void
   {
-    if ($this->rm->findUserByEmail($this->rm->data));
-    {
-      Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
-      exit;
-    }
+    //Grabbing the data
+    $this->rm->loadData($_POST);
+    //Running error handlers and user signup
+    $this->validateEmail();
+    $this->validatePassword();
   }
 
 
   public function signUpUser(): void
   {
-    //Running error handlers and user signup
     $this->validation();
     if (!$this->rm->errors)
     {
@@ -126,6 +125,7 @@ class SignUpControler
       }
       if ($this->rm->registerUser($this->rm->data))
       {
+        // $this->rm->conn->close();
         Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
         Session::set('user', $this->rm->data['fullname']);
         Session::redirect('../../httpdocs/index.php');
@@ -137,6 +137,18 @@ class SignUpControler
       }
     }
 	}
+
+  public function loginUser ()
+  {
+    $this->loginValidation();
+    if (!$this->rm->errors && $this->rm->checkUserExsist())
+    {
+      Session::redirect('../../httpdocs/dashboard.php');
+    }else
+    {
+      Session::prntR($this->rm);
+    }
+  }
 }
 
 if (isset($_POST['submit']))
@@ -148,4 +160,11 @@ if (isset($_POST['submit']))
   $signup->signUpUser();
   //Session::prntR($signup->rm->findUserByEmail($_POST['email']));
   //going back to front page
+}
+if (isset($_POST['login']))
+{
+  Session::init();
+  $login = new SignUpControler();
+  $login->loginUser();
+  // Session::prntR($_POST);
 }
