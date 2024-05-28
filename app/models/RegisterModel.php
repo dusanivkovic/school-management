@@ -51,13 +51,17 @@ class RegisterModel extends Db
         return $this->db->stmt->execute() ? true : false;
     }
 
-    public function checkUserExsist ()
+    public function validateUserData (): bool
     {
         $password = $this->data['password'];
         $user = $this->findUserByEmail();
-        $hashPassword = $user['password'];
-        $verify = password_verify($password, $hashPassword);
-        return ($user && $verify) ? true : false;
+        if ($user)
+        {
+            $hashPassword = $user['password'];
+            $verify = password_verify($password, $hashPassword);
+            return ($user && $verify) ? true : false;
+        }
+        return false;
     }
 
     public function hasError ($attribute)

@@ -12,13 +12,15 @@ use const app\helpers\FLASH_WARNING;
 
 class SignUpControler
 {
-  protected const FULL_NAME = 'Name is required';
-  protected const PASSWORD_REQUIRED = 'Password is required';
-  protected const PASSWORD_MIN = 'Password must be at least 8 characters long';
-  protected const EMAIL_REQUIRED = 'Email is required';
-  protected const PASSWORD_MATCH = 'Password does not match';
-  protected const EMAIL_FORMAT = 'Invalid email format';
-  protected const USER_EXISTS = 'Username or email already taken';
+  protected const FULL_NAME = 'Name is required!';
+  protected const PASSWORD_REQUIRED = 'Password is required!';
+  protected const PASSWORD_MIN = 'Password must be at least 8 characters long!';
+  protected const EMAIL_REQUIRED = 'Email is required!';
+  protected const PASSWORD_MATCH = 'Password does not match!';
+  protected const EMAIL_FORMAT = 'Invalid email format!';
+  protected const USER_EXISTS = 'Username or email already taken!';
+  protected const USER_UNKNOWN = 'Username with that email does not exists!';
+  protected const PASSWORD_WRONG = 'Incorrect password!';
   const SUCCESS_REGISTRATION = 'Registration success!';
   public RegisterModel $rm;
 
@@ -53,7 +55,7 @@ class SignUpControler
     {
       $this->rm->addError('email-empty', self::EMAIL_REQUIRED);
       Session::flash('email-empty', self::EMAIL_REQUIRED, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
+      // Session::redirect('../../httpdocs/index.php?page=register');
     }elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     {
       $this->rm->addError('email-format', self::EMAIL_FORMAT);
@@ -70,7 +72,7 @@ class SignUpControler
     {
       $this->rm->addError('password', self::PASSWORD_REQUIRED);
       Session::flash('password-empty', self::PASSWORD_REQUIRED, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
+      // Session::redirect('../../httpdocs/index.php?page=register');
     } elseif (strlen($password) < 8) {
       $this->rm->addError('password-min', self::PASSWORD_MIN);
       Session::flash('password-min', self::PASSWORD_MIN, FLASH_ERROR);
@@ -114,12 +116,16 @@ class SignUpControler
   public function signUpUser(): void
   {
     $this->validation();
+    if ($this->rm->errors)
+    {
+      Session::redirect('../../httpdocs/index.php?page=register');
+      exit;
+    }
     if (!$this->rm->errors)
     {
       if ($this->rm->findUserByEmail($this->rm->data))
       {
         Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
-        Session::prntR($this->rm);
         Session::redirect('../../httpdocs/index.php?page=register');
         exit;
       }
@@ -127,9 +133,10 @@ class SignUpControler
       {
         // $this->rm->conn->close();
         Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
-        Session::set('user', $this->rm->data['fullname']);
         Session::redirect('../../httpdocs/index.php');
-      }else
+        exit;
+      }
+      if (!$this->rm->registerUser($this->rm->data))
       {
         Session::flash('register', 'Something went wrong!', FLASH_WARNING);
         Session::redirect('../../httpdocs/index.php?page=register');
@@ -141,12 +148,31 @@ class SignUpControler
   public function loginUser ()
   {
     $this->loginValidation();
-    if (!$this->rm->errors && $this->rm->checkUserExsist())
+    if ($this->rm->errors)
     {
-      Session::redirect('../../httpdocs/dashboard.php');
-    }else
+      Session::redirect('../../httpdocs/index.php');
+      exit;
+    }
+    if (!$this->rm->errors)
     {
-      Session::prntR($this->rm);
+      if ($this->rm->validateUserData())
+      {
+        $user = $this->rm->findUserByEmail();
+        Session::set('user', $user['full_name']);
+        Session::redirect('../../httpdocs/dashboard.php');
+        exit;
+      }
+      if (!$this->rm->findUserByEmail())
+      {
+        Session::flash('user', self::USER_UNKNOWN, FLASH_WARNING);
+        Session::redirect('../../httpdocs/index.php');
+        exit;
+      }else
+      {
+        Session::flash('user', self::PASSWORD_WRONG, FLASH_WARNING);
+        Session::redirect('../../httpdocs/index.php');
+        exit;
+      }
     }
   }
 }
@@ -158,13 +184,11 @@ if (isset($_POST['submit']))
   //Instantiate SignUpController class
   $signup = new SignUpControler();
   $signup->signUpUser();
-  //Session::prntR($signup->rm->findUserByEmail($_POST['email']));
-  //going back to front page
 }
 if (isset($_POST['login']))
 {
   Session::init();
+    //Instantiate SignUpController class
   $login = new SignUpControler();
   $login->loginUser();
-  // Session::prntR($_POST);
 }
