@@ -42,9 +42,10 @@ class RegisterModel extends Db
     public function registerUser (): bool
     {
         $hashPassword = password_hash($this->data['password'], PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `subject`, `class_teacher`) VALUES (?, ?, ?, ?, ?)';
+        $classTeacher = $this->data['class'] . $this->data['department'][0];
+        $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `class_teacher`) VALUES (?, ?, ?, ?)';
         $stmt = $this->db->query($sql);
-        $stmt->bind_param('sssss', $this->data['fullname'], $this->data['email'], $hashPassword, $this->data['subject'], $this->data['classteacher']);
+        $stmt->bind_param('ssss', $this->data['fullname'], $this->data['email'], $hashPassword, $classTeacher);
         // $stmt->close();
         // $this->db->conn->close();
 
@@ -78,6 +79,46 @@ class RegisterModel extends Db
     public function addError($key, $message) 
     {
         $this->errors[$key] = $message;
+    }
+
+    public function getName(): string
+    {
+        return $this->data['fullname'];
+    }
+
+    public function setName($name): void
+    {
+        $this->data['fullname'] = $name;
+    }
+
+    public function getMail(): string
+    {
+        return $this->data['email'];
+    }
+
+    public function setMail($mail): void
+    {
+        $this->data['email'] = $mail;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->data['password'];
+    }
+
+    public function setPassword($password): void
+    {
+        $this->data['password'] = $password;
+    }
+
+    public function getClassTeacher(): string
+    {
+        return $this->data['classteacher'];
+    }
+
+    public function setClassTeacher($classTeacher): void
+    {
+        $this->data['classteacher'] = $classTeacher;
     }
 
 }

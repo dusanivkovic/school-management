@@ -11,7 +11,7 @@ class Session
 {
     public static function init():void
     {
-        session_start();
+        !isset($_SESSION) ? session_start() : '';
     }
 
     public static function set($key, $val):void
@@ -33,6 +33,20 @@ class Session
     {
         session_destroy();
         session_unset();
+    }
+
+    public static function isLoggedIn ()
+    {
+        return self::get('user') ?? null;
+    }
+
+    public static function requireLogin ()
+    {
+        if (!self::isLoggedIn())
+        {
+            self::redirect('./error_page.php');
+            exit;
+        }
     }
 
     public static function redirect ($location)

@@ -3,17 +3,9 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use app\models\{Db, RegisterModel};
 use app\controllers\SignUpControler;
 use app\helpers\Session;
+$classes = ['Разред', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
 
-use const app\helpers\FLASH_INFO;
-
-// Session::flash('name-empty');
-// Session::flash('email-empty');
-// Session::flash('email-format');
-// Session::flash('password-empty');
-// Session::flash('password-min');
-// Session::flash('password-match');
 Session::flash();
-
 ?>
 <form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
   <div class="form-group">
@@ -24,7 +16,7 @@ Session::flash();
           <i class="ti-user text-primary"></i>
         </span>
       </div>
-      <input name="fullname" type="text" class="form-control form-control-lg border-left-0 <?php ##echo $hasErrorUserName ?? 'is-invalid'; ?>" placeholder="Ime i prezime" value="<?php ##echo $hasErrorUserName ?? 'Ime i prezime'?>">
+      <input name="fullname" type="text" class="form-control form-control-lg border-left-0" placeholder="Ime i prezime" value="">
     </div>
   </div>
   <div class="form-group">
@@ -60,27 +52,25 @@ Session::flash();
       <input name="passwordConfirm" type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Lozinka">                        
     </div>
   </div>
-  <div class="form-group">
-    <label>Predmet</label>
-    <select name="subject" class="form-control form-control-lg" id="exampleFormControlSelect2">
-      <option>Izaberi predmet</option>
-      <option>United States of America</option>
-      <option>United Kingdom</option>
-      <option>India</option>
-      <option>Germany</option>
-      <option>Argentina</option>
-    </select>
-  </div>
-  <div class="form-group">
+  <div class="form-group row">
     <label>Razrednik</label>
-    <select name="classteacher" class="form-control form-control-lg" id="exampleFormControlSelect2">
-      <option>Izaberi razred</option>
-      <option>United States of America</option>
-      <option>United Kingdom</option>
-      <option>India</option>
-      <option>Germany</option>
-      <option>Argentina</option>
-    </select>
+    <div class="col-md-4">
+      <select name="class" class="form-control form-control-lg" id="exampleFormControlSelect2">
+        <?php foreach ($classes as $class) { echo '<option value=' ."$class". ">{$class}<" .'/option>';} ?>
+      </select>
+    </div>
+    <div class="col-md-8 row">
+    <label>Odjeljenje</label>
+      <?php 
+        $i = 1;
+        while ($i <= 5)
+        {
+          echo '<div class="col-2"><input name="department[]" type="checkbox" class="form-check-input" value = ' . $i . '>' .$i . '</input></div>';
+          $i++;
+        }  
+      ?>
+    </div>
+
   </div>
   <div class="mt-3">
     <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>

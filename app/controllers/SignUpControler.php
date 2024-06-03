@@ -175,20 +175,55 @@ class SignUpControler
       }
     }
   }
+
+  public function logout ()
+  {
+    Session::destroy();
+    Session::redirect('../../httpdocs/index.php');
+  }
+
+  public function editUser ()
+  {
+    // $userId;
+    $fullName = $this->rm->getName();
+    $email = $this->rm->getMail();
+    $password = $this->rm->getPassword();
+    $classTeacher = $this->rm->getClassTeacher();
+  }
 }
 
-if (isset($_POST['submit']))
+//Instantiate SignUpController class
+$signup = new SignUpControler();
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-  Session::init();
-
-  //Instantiate SignUpController class
-  $signup = new SignUpControler();
-  $signup->signUpUser();
+  if (isset($_POST['submit']))
+  {
+    Session::init();
+    $signup->signUpUser();
+    exit;
+  }
+  if (isset($_POST['login']))
+  {
+    Session::init();
+      //Instantiate SignUpController class
+    // $login = new SignUpControler();
+    $signup->loginUser();
+    exit;
+  }
 }
-if (isset($_POST['login']))
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-  Session::init();
-    //Instantiate SignUpController class
-  $login = new SignUpControler();
-  $login->loginUser();
+  if (isset($_GET['logout']))
+  {
+    Session::init();
+    $signup->logout();
+    exit;
+  }
+
+  if (isset($_GET['saveUser']))
+  {
+    Session::prntR($signup->rm);
+  }
 }
