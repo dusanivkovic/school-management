@@ -39,6 +39,19 @@ class RegisterModel extends Db
         return $result->num_rows > 0 ? $user : false;
     }
 
+    public function findUserByUserId ($id)
+    {
+        $sql = "SELECT * FROM teachers WHERE user_id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        // $this->db->conn->close();
+        return $result->num_rows > 0 ? $user : false;
+    }
+
     public function registerUser (): bool
     {
         $hashPassword = password_hash($this->data['password'], PASSWORD_DEFAULT);
@@ -63,6 +76,12 @@ class RegisterModel extends Db
             return ($user && $verify) ? true : false;
         }
         return false;
+    }
+
+    public function editUser ()
+    {
+        $hashPassword = password_hash($this->getPassword(), PASSWORD_DEFAULT);
+
     }
 
     public function hasError ($attribute)

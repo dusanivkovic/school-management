@@ -159,6 +159,7 @@ class SignUpControler
       {
         $user = $this->rm->findUserByEmail();
         Session::set('user', $user['full_name']);
+        Session::set('userId', $user['user_id']);
         Session::redirect('../../httpdocs/dashboard.php');
         exit;
       }
@@ -185,10 +186,11 @@ class SignUpControler
   public function editUser ()
   {
     // $userId;
+    $this->rm->loadData($_POST);
     $fullName = $this->rm->getName();
     $email = $this->rm->getMail();
     $password = $this->rm->getPassword();
-    $classTeacher = $this->rm->getClassTeacher();
+    //$classTeacher = $this->rm->getClassTeacher();
   }
 }
 
@@ -210,6 +212,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $signup->loginUser();
     exit;
   }
+  if (isset($_POST['saveUser']))
+  {
+    $edit = new SignUpControler();
+    $edit->editUser();
+    Session::prntR($edit);
+    exit;
+  }
 }
 
 
@@ -224,6 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 
   if (isset($_GET['saveUser']))
   {
+    $signup->editUser();
     Session::prntR($signup->rm);
   }
 }
