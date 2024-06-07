@@ -183,15 +183,12 @@ class SignUpControler
     Session::redirect('../../httpdocs/index.php');
   }
 
-  public function editUser ()
+  public function saveUser ()
   {
-    // $userId;
     $this->rm->loadData($_POST);
-    $fullName = $this->rm->getName();
-    $email = $this->rm->getMail();
-    $password = $this->rm->getPassword();
-    //$classTeacher = $this->rm->getClassTeacher();
   }
+
+
 }
 
 //Instantiate SignUpController class
@@ -214,9 +211,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }
   if (isset($_POST['saveUser']))
   {
-    $edit = new SignUpControler();
-    $edit->editUser();
-    Session::prntR($edit);
+    //$edit = new SignUpControler();
+    $signup->rm->editUser();
+    Session::prntR($signup->rm);
     exit;
   }
 }
@@ -231,9 +228,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     exit;
   }
 
-  if (isset($_GET['saveUser']))
-  {
-    $signup->editUser();
-    Session::prntR($signup->rm);
-  }
+  // if (isset($_GET['saveUser']))
+  // {
+  //   $signup->editUser();
+  //   Session::prntR($signup->rm);
+  // }
 }

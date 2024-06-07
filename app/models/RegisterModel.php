@@ -80,9 +80,24 @@ class RegisterModel extends Db
 
     public function editUser ()
     {
-        $hashPassword = password_hash($this->getPassword(), PASSWORD_DEFAULT);
+      $userId = '';
+      $fullName = $this->getName();
+      $email = $this->getMail();
+      $password = $this->getPassword();
+      //$classTeacher = $this->rm->getClassTeacher();
+      $fullName = $this->conn->real_escape_string($fullName);
+      $email = $this->conn->real_escape_string($email);
+    //   $password = $this->conn->real_escape_string(md5($password));
 
+        $sql = "UPDATE TABLE teachers SET full_name = :fullName, email = :email, password = :password  WHERE user_id = :userId";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('sssi', $fullName, $email, $password, $userId);
+        // $stmt->close();
+        // $this->db->conn->close();
+        return $this->db->stmt->execute() ? true : false;
     }
+
+
 
     public function hasError ($attribute)
     {
