@@ -11,7 +11,7 @@ $user = $rm->findUserByUserId(Session::get('userId'));
 $arr = str_split($user['class_teacher']);
 $department = array_pop($arr);
 $class = implode('', $arr);
-Session::prntR($class);
+$password = password_verify(Session::get('password'), $user['password']) ? Session::get('password') : 'Something went wrong!';
 ?>
 <div class="main-panel">
     <div class="content-wrapper">
@@ -21,6 +21,7 @@ Session::prntR($class);
                     <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here' ?></h4>
                     <p class="card-description">Uredi podatke</p>
                     <form class="forms-sample" method="POST" action="../app/controllers/SignUpControler.php">
+                        <input type="hidden" name="userId" value="<?php echo $user['user_id']?>">
                         <div class="form-group">
                             <label for="exampleInputName1">Name</label>
                             <input name="fullname" type="text" class="form-control" id="exampleInputName1" placeholder="Name" value="<?php echo $user['full_name'] ?>">
@@ -31,7 +32,7 @@ Session::prntR($class);
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword4">Password</label>
-                            <input name="password" type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" value="<?php echo md5($user['password']) ?>">
+                            <input name="password" type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" value="<?php echo Session::get('password') ?>">
                         </div>
                         <div class="form-group row">
                             <label>Razrednik</label>
@@ -57,7 +58,7 @@ Session::prntR($class);
                             </div>
                         </div>
                         <button type="submit" name="saveUser" class="btn btn-primary me-2">Save</button>
-                        <button class="btn btn-light">Cancel</button>
+                        <a href="./dashboard.php" class="btn btn-light">Cancel</a>
                     </form>
                 </div>
             </div>

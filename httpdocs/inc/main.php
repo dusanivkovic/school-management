@@ -1,17 +1,23 @@
+<?php 
+    require_once __DIR__ . './../../vendor/autoload.php';
+    // require_once __DIR__ . './../../app/helpers/Session.php';
+    use app\helpers\Session;
+?>
     <!-- partial -->
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h4 class="font-weight-bold mb-0">RoyalUI Dashboard</h4>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
-                            <i class="ti-clipboard btn-icon-prepend"></i>Report
-                        </button>
-                    </div>
+                        <div>
+                            <h4 class="font-weight-bold mb-0">RoyalUI Dashboard</h4>
+                        </div>
+                        <?php Session::flash(); ?>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                                <i class="ti-clipboard btn-icon-prepend"></i>Report
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

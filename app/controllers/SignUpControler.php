@@ -22,6 +22,7 @@ class SignUpControler
   protected const USER_UNKNOWN = 'Username with that email does not exists!';
   protected const PASSWORD_WRONG = 'Incorrect password!';
   const SUCCESS_REGISTRATION = 'Registration success!';
+  const SUCCESS_UPDATED = 'User successfully updated!';
   public RegisterModel $rm;
 
   public function __construct()
@@ -131,7 +132,7 @@ class SignUpControler
       }
       if ($this->rm->registerUser($this->rm->data))
       {
-        // $this->rm->conn->close();
+        $this->rm->db->conn->close();
         Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
         Session::redirect('../../httpdocs/index.php');
         exit;
@@ -158,8 +159,10 @@ class SignUpControler
       if ($this->rm->validateUserData())
       {
         $user = $this->rm->findUserByEmail();
+        $this->rm->db->conn->close();
         Session::set('user', $user['full_name']);
         Session::set('userId', $user['user_id']);
+        Session::set('password', $_POST['password']);
         Session::redirect('../../httpdocs/dashboard.php');
         exit;
       }
@@ -186,9 +189,23 @@ class SignUpControler
   public function saveUser ()
   {
     $this->rm->loadData($_POST);
+    $userId = $this->rm->getUserId();
+    $fullName = $this->rm->getName();
+    $email = $this->rm->getMail();
+    $password = $this->rm->getPassword();
+    $classTeacher = $this->rm->getClass() . $this->rm->getDepartment();
+    Session::prntR($password);
+    if ($this->rm->editUser($userId, $fullName, $email, $password, $classTeacher)) 
+    {
+      $user = $this->rm->findUserByEmail();
+      $this->rm->db->conn->close();
+      Session::set('password', $_POST['password']);
+      Session::set('user', $user['full_name']);
+      Session::flash('updateUser', self::SUCCESS_UPDATED, FLASH_INFO);
+      Session::redirect('../../httpdocs/dashboard.php');
+      exit;
+    }
   }
-
-
 }
 
 //Instantiate SignUpController class
@@ -211,9 +228,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }
   if (isset($_POST['saveUser']))
   {
-    //$edit = new SignUpControler();
-    $signup->rm->editUser();
-    Session::prntR($signup->rm);
+    Session::init();
+    $signup->saveUser();
+    // Session::prntR($signup->rm);
     exit;
   }
 }
@@ -227,10 +244,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     $signup->logout();
     exit;
   }
-
-  // if (isset($_GET['saveUser']))
-  // {
-  //   $signup->editUser();
-  //   Session::prntR($signup->rm);
-  // }
 }

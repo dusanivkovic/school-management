@@ -5,15 +5,9 @@ use app\helpers\Session;
 
 class RegisterModel extends Db
 {
-    // const FULL_NAME = 'Name is required';
-    // const PASSWORD_REQUIRED = 'Password is required';
-    // const PASSWORD_MIN = 'Password must be at least 8 characters long';
-    // const EMAIL_REQUIRED = 'Email is required';
-    // const PASSWORD_MATCH = 'Password does not match';
-    // const EMAIL_FORMAT = 'Invalid email format';
     public array $errors = [];
     public array $data = [];
-    private Db $db;
+    public Db $db;
 
     public function __construct()
     {
@@ -48,19 +42,17 @@ class RegisterModel extends Db
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        // $this->db->conn->close();
+
         return $result->num_rows > 0 ? $user : false;
     }
 
     public function registerUser (): bool
     {
         $hashPassword = password_hash($this->data['password'], PASSWORD_DEFAULT);
-        $classTeacher = $this->data['class'] . $this->data['department'][0];
+        $classTeacher = $this->data['class'] == 'Разред' ? '' : $this->data['class'] . $this->data['department'][0];
         $sql = 'INSERT INTO teachers (`full_name`, `email`, `password`, `class_teacher`) VALUES (?, ?, ?, ?)';
         $stmt = $this->db->query($sql);
         $stmt->bind_param('ssss', $this->data['fullname'], $this->data['email'], $hashPassword, $classTeacher);
-        // $stmt->close();
-        // $this->db->conn->close();
 
         return $this->db->stmt->execute() ? true : false;
     }
@@ -78,26 +70,19 @@ class RegisterModel extends Db
         return false;
     }
 
-    public function editUser ()
+    public function editUser ($userId, $fullName, $email, $password, $classTeacher)
     {
-      $userId = '';
-      $fullName = $this->getName();
-      $email = $this->getMail();
-      $password = $this->getPassword();
-      //$classTeacher = $this->rm->getClassTeacher();
-      $fullName = $this->conn->real_escape_string($fullName);
-      $email = $this->conn->real_escape_string($email);
-    //   $password = $this->conn->real_escape_string(md5($password));
+        $fullName = $this->db->conn->real_escape_string($fullName);
+        $email = $this->db->conn->real_escape_string($email);
+        $password = $this->db->conn->real_escape_string(password_hash($password, PASSWORD_DEFAULT));
+        $classTeacher = $this->db->conn->real_escape_string($classTeacher);
 
-        $sql = "UPDATE TABLE teachers SET full_name = :fullName, email = :email, password = :password  WHERE user_id = :userId";
+        $sql = "UPDATE teachers SET full_name = ?, email = ?, password = ?, class_teacher = ?  WHERE user_id = ?";
         $stmt = $this->db->query($sql);
-        $stmt->bind_param('sssi', $fullName, $email, $password, $userId);
-        // $stmt->close();
-        // $this->db->conn->close();
+        $stmt->bind_param('ssssi', $fullName, $email, $password, $classTeacher, $userId);
+
         return $this->db->stmt->execute() ? true : false;
     }
-
-
 
     public function hasError ($attribute)
     {
@@ -113,6 +98,11 @@ class RegisterModel extends Db
     public function addError($key, $message) 
     {
         $this->errors[$key] = $message;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->data['userId'];
     }
 
     public function getName(): string
@@ -145,14 +135,24 @@ class RegisterModel extends Db
         $this->data['password'] = $password;
     }
 
-    public function getClassTeacher(): string
+    public function getClass()
     {
-        return $this->data['classteacher'];
+        return $this->data['class'] ?? NULL;
     }
 
-    public function setClassTeacher($classTeacher): void
+    public function setClass($class): void
     {
-        $this->data['classteacher'] = $classTeacher;
+        $this->data['class'] = $class;
+    }
+    
+    public function getDepartment()
+    {
+        return $this->data['department'][0] ?? NULL;
+    }
+
+    public function setDepartment($class): void
+    {
+        $this->data['department'] = $class;
     }
 
 }
