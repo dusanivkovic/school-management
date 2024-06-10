@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './inc/header.php';
+require_once __DIR__ . '/../httpdocs/inc/header.php';
 $page = 'login';
 if (isset($_GET['page']))
 {
@@ -30,6 +30,6 @@ if (isset($_GET['page']))
         </div>
         <!-- content-wrapper ends -->
 <?php
-require_once __DIR__ . './inc/footer.php';
+require_once __DIR__ . '/../httpdocs/inc/footer.php';
 
 

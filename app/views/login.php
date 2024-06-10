@@ -9,7 +9,7 @@ use const app\helpers\FLASH_INFO;
 Session::flash();
 
 ?>
-<form class="pt-3" method="post" action="../app/controllers/signUpControler.php">
+<form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
   <div class="form-group">
     <label for="exampleInputEmail">Email</label>
     <div class="input-group">

@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . './../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 use app\helpers\Session;
 use app\controllers\SignUpControler;
 use app\models\RegisterModel;
 
-require_once __DIR__ . './../helpers/Session.php';
 $classes = ['Разред', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
 $rm = new RegisterModel();
 $user = $rm->findUserByUserId(Session::get('userId'));

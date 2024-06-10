@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './inc/header.php';
+require_once __DIR__ . '/inc/header.php';
 ?>
 <div class="container-fluid page-body-wrapper full-page-wrapper">
   <div class="content-wrapper d-flex align-items-center auth lock-full-bg">
