@@ -1,8 +1,7 @@
 <?php
-
+require_once __DIR__ . '/../../vendor/autoload.php';
 use app\helpers\Session;
 
-require_once __DIR__ . './../../app/helpers/Session.php';
 ?>
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -23,7 +22,7 @@ require_once __DIR__ . './../../app/helpers/Session.php';
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="./dashboard.php?editUser"><i class="ti-settings text-primary"></i>Settings</a>
-                    <a class="dropdown-item" href="../app/controllers/SignUpControler.php?logout"><i class="ti-power-off text-primary"></i>Logout</a>
+                    <a class="dropdown-item" href="index.php?logout"><i class="ti-power-off text-primary"></i>Logout</a>
                 </div>
             </li>
         </ul>

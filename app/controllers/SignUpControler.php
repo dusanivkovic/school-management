@@ -119,7 +119,7 @@ class SignUpControler
     $this->validation();
     if ($this->rm->errors)
     {
-      Session::redirect('./../../httpdocs/index.php?page=register');
+      Session::redirect('index.php?register');
       exit;
     }
     if (!$this->rm->errors)
@@ -127,19 +127,19 @@ class SignUpControler
       if ($this->rm->findUserByEmail($this->rm->data))
       {
         Session::flash('register', self::USER_EXISTS, FLASH_ERROR);
-        Session::redirect('./../../httpdocs/index.php?page=register');
+        Session::redirect('index.php?register');
         exit;
       }
       if ($this->rm->registerUser($this->rm->data))
       {
         Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
-        Session::redirect('./../../httpdocs/index.php');
+        Session::redirect('index.php');
         exit;
       }
       if (!$this->rm->registerUser($this->rm->data))
       {
         Session::flash('register', 'Something went wrong!', FLASH_WARNING);
-        Session::redirect('./../../httpdocs/index.php?page=register');
+        Session::redirect('index.php?register');
         exit;
       }
       $this->rm->db->conn->close();
@@ -151,7 +151,7 @@ class SignUpControler
     $this->loginValidation();
     if ($this->rm->errors)
     {
-      Session::redirect('./../../httpdocs/index.php');
+      Session::redirect('index.php?login');
       exit;
     }
     if (!$this->rm->errors)
@@ -162,18 +162,18 @@ class SignUpControler
         Session::set('user', $user['full_name']);
         Session::set('userId', $user['user_id']);
         Session::set('password', $_POST['password']);
-        Session::redirect('../../httpdocs/dashboard.php');
+        Session::redirect('dashboard.php?main');
         exit;
       }
       if (!$this->rm->findUserByEmail())
       {
         Session::flash('user', self::USER_UNKNOWN, FLASH_WARNING);
-        Session::redirect('./../../httpdocs/index.php');
+        Session::redirect('index.php?login');
         exit;
       }else
       {
         Session::flash('user', self::PASSWORD_WRONG, FLASH_WARNING);
-        Session::redirect('./../../httpdocs/index.php');
+        Session::redirect('index.php?login');
         exit;
       }
       $this->rm->db->conn->close();
@@ -183,7 +183,7 @@ class SignUpControler
   public function logout ()
   {
     Session::destroy();
-    Session::redirect('./../../httpdocs/index.php');
+    Session::redirect('index.php');
   }
 
   public function saveUser ()
@@ -194,7 +194,6 @@ class SignUpControler
     $email = $this->rm->getMail();
     $password = $this->rm->getPassword();
     $classTeacher = $this->rm->data['class'] == 'Разред' ? '' : $this->rm->getClass() . $this->rm->getDepartment();
-    Session::prntR($password);
     if ($this->rm->editUser($userId, $fullName, $email, $password, $classTeacher)) 
     {
       $user = $this->rm->findUserByEmail();
@@ -202,7 +201,7 @@ class SignUpControler
       Session::set('password', $_POST['password']);
       Session::set('user', $user['full_name']);
       Session::flash('updateUser', self::SUCCESS_UPDATED, FLASH_SUCCESS);
-      Session::redirect('./../../httpdocs/dashboard.php');
+      Session::redirect('dashboard.php?main');
       exit;
     }
   }
@@ -221,8 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   if (isset($_POST['login']))
   {
     Session::init();
-      //Instantiate SignUpController class
-    // $login = new SignUpControler();
     $signup->loginUser();
     exit;
   }
@@ -230,11 +227,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     Session::init();
     $signup->saveUser();
-    // Session::prntR($signup->rm);
     exit;
   }
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {

@@ -7,7 +7,7 @@ $classes = ['Разред', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
 
 Session::flash();
 ?>
-<form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
+<form class="pt-3" method="post" action="index.php?signUpUser">
   <div class="form-group">
     <label>Ime i prezime</label>
     <div class="input-group">
@@ -76,7 +76,7 @@ Session::flash();
     <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Already have an account? <a href="index.php?page=login" class="text-primary">Login</a>
+    Already have an account? <a href="index.php?login" class="text-primary">Login</a>
   </div>
 </form>
 

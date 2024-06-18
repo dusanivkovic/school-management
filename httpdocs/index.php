@@ -1,10 +1,45 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../httpdocs/inc/header.php';
-$page = 'login';
-if (isset($_GET['page']))
-{
-    $page = $_GET['page'];
-}
+use app\core\Router;
+use app\helpers\Session;
+
+// $page = 'login';
+// $route = $_GET['route'] ?? '';
+$router = new Router();
+$routes = require __DIR__ . '../../routes.php';
+$uri = parse_url($_SERVER['REQUEST_URI'])['query'] ?? '';
+$method = $_SERVER['REQUEST_METHOD'];
+
+// if (isset($_GET['page']))
+// {
+//     $page = $_GET['page'];
+// }
+
+// if ($route)
+// {
+//     if ($route == 'login')
+//     {
+//         require_once __DIR__ . '../../app/controllers/SignUpControler.php';
+//         exit;
+//     }
+//     if ($route == 'signUp')
+//     {
+//         require_once __DIR__ . '../../app/controllers/SignUpControler.php';
+//         exit;
+//     }
+//     if ($route == 'logout')
+//     {
+//         require_once __DIR__ . '../../app/controllers/SignUpControler.php';
+//         exit;
+//     }
+//     if ($route == 'editUser')
+//     {
+//         require_once __DIR__ . '../../app/controllers/SignUpControler.php';
+//         exit;
+//     }
+ 
+// }
 
 ?>
 <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -19,7 +54,8 @@ if (isset($_GET['page']))
                         <h4>Welcome back!</h4>
                         <h6 class="font-weight-light">Happy to see you again!</h6>
                         <?php 
-                            $page == 'register' ? require_once __DIR__. '/../app/views/register.php' : require_once __DIR__. '/../app/views/login.php';
+                            //$page == 'register' ? require_once __DIR__. '/../app/views/register.php' : require_once __DIR__. '/../app/views/login.php';
+                            $router->route($uri, $method);
                         ?>
                     </div>
                 </div>

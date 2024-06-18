@@ -6,7 +6,8 @@
             "app\\form\\": ".//app//form",
             "app\\views\\": ".//app//views",
             "app\\controllers\\": ".//app//controllers",
-            "app\\helpers\\": ".//app//helpers"
+            "app\\helpers\\": ".//app//helpers",
+            "app\\core\\": ".//app//core"
         }
     },
     "require": {}

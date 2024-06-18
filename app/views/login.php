@@ -9,7 +9,7 @@ use const app\helpers\FLASH_INFO;
 Session::flash();
 
 ?>
-<form class="pt-3" method="post" action="../app/controllers/SignUpControler.php">
+<form class="pt-3" method="post" action="index.php?loginUser">
   <div class="form-group">
     <label for="exampleInputEmail">Email</label>
     <div class="input-group">
@@ -36,6 +36,6 @@ Session::flash();
     <button type="submit" name="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Don't have an account? <a href="index.php?page=register" class="text-primary">Create</a>
+    Don't have an account? <a href="index.php?register" class="text-primary">Create</a>
   </div>
 </form>
