@@ -1,0 +1,2 @@
+<?php
+return ["Izaberi predmet", "Srpski jezik", "Engleski jezik", "NJemački jezik", "Likovna kultura", "Muzička kultura", "Istorija", "Geografija", "Fizika", "Matematika", "Biologija", "Hemija", "Tehničko obrazovanje", "Osnovi informatike", "Priroda i društvo", "Moja okolina", "Digitalni svijet"];

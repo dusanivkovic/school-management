@@ -1,6 +1,5 @@
 <?php 
     require_once __DIR__ . '/../../vendor/autoload.php';
-    // require_once __DIR__ . './../../app/helpers/Session.php';
     use app\helpers\Session;
 ?>
     <!-- partial -->
@@ -25,12 +24,14 @@
                 <div class="col-md-3 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <p class="card-title text-md-center text-xl-left">Sales</p>
+                        <p class="card-title text-md-center text-xl-left">Provjere</p>
                         <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                        <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">34040</h3>
-                        <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Dodaj</h3>
+                            <a href="./dashboard.php?addTest" type="button" class="btn btn-inverse-primary btn-rounded btn-icon d-flex justify-content-center align-items-center">
+                                <i class="ti-plus"></i>
+                            </a>
                         </div>  
-                        <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ms-1"><small>(30 days)</small></span></p>
+                        <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ms-1"><small>provjera</small></span></p>
                     </div>
                     </div>
                 </div>

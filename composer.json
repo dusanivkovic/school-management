@@ -6,6 +6,7 @@
             "app\\form\\": ".//app//form",
             "app\\views\\": ".//app//views",
             "app\\controllers\\": ".//app//controllers",
+            "app\\controllers\\users\\": ".//app//controllers//users",
             "app\\helpers\\": ".//app//helpers",
             "app\\core\\": ".//app//core"
         }
