@@ -1,6 +1,10 @@
 <?php 
     require_once __DIR__ . '/../../vendor/autoload.php';
     use app\helpers\Session;
+    use app\models\TestModel;
+
+    $tM = new TestModel();
+    $numberTestes = count($tM->findAllTestesForUser(Session::get('userId')));
 ?>
     <!-- partial -->
     <div class="main-panel">
@@ -23,16 +27,16 @@
             <div class="row">
                 <div class="col-md-3 grid-margin stretch-card">
                     <div class="card">
-                    <div class="card-body">
-                        <p class="card-title text-md-center text-xl-left">Provjere</p>
-                        <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Dodaj</h3>
-                            <a href="./dashboard.php?addTest" type="button" class="btn btn-inverse-primary btn-rounded btn-icon d-flex justify-content-center align-items-center">
-                                <i class="ti-plus"></i>
-                            </a>
-                        </div>  
-                        <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ms-1"><small>provjera</small></span></p>
-                    </div>
+                        <div class="card-body">
+                            <p class="card-title text-md-center text-xl-left">Provjere</p>
+                            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                                <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Dodaj</h3>
+                                <a href="./dashboard.php?addTest" type="button" class="btn btn-inverse-primary btn-rounded btn-icon d-flex justify-content-center align-items-center">
+                                    <i class="ti-plus"></i>
+                                </a>
+                            </div>  
+                            <p class="mb-0 mt-2 text-danger"><span class="text-black ms-1"><small>Ukupno </small></span><?= $numberTestes ?><span class="text-black ms-1"><small>provjera</small></span></p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 grid-margin stretch-card">

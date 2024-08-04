@@ -17,7 +17,6 @@ class RegisterModel extends Db
     public  function loadData($postData)
     {
         $this->data = $postData;
-        //return self::$data;
     }
 
     public function findUserByEmail ()

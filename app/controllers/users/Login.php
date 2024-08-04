@@ -17,7 +17,7 @@ class LoginUser extends User
       $this->loginValidation();
       if ($this->rm->errors)
       {
-        Session::redirect('index.php?login');
+        Session::redirect('./?login');
         exit;
       }
       if (!$this->rm->errors)
@@ -28,18 +28,18 @@ class LoginUser extends User
           Session::set('user', $user['full_name']);
           Session::set('userId', $user['user_id']);
           Session::set('password', $_POST['password']);
-          Session::redirect('dashboard.php?main');
+          Session::redirect('./dashboard.php?main');
           exit;
         }
         if (!$this->rm->findUserByEmail())
         {
           Session::flash('user', self::USER_UNKNOWN, FLASH_WARNING);
-          Session::redirect('index.php?login');
+          Session::redirect('./?login');
           exit;
         }else
         {
           Session::flash('user', self::PASSWORD_WRONG, FLASH_WARNING);
-          Session::redirect('index.php?login');
+          Session::redirect('./?login');
           exit;
         }
         $this->rm->db->conn->close();
@@ -49,7 +49,7 @@ class LoginUser extends User
     public function logout ()
     {
       Session::destroy();
-      Session::redirect('index.php');
+      Session::redirect('./?login');
     }
 }
 //Instantiate LoginUser class

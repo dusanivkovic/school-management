@@ -21,8 +21,8 @@ class User
   protected const USER_EXISTS = 'Username or email already taken!';
   protected const USER_UNKNOWN = 'Username with that email does not exists!';
   protected const PASSWORD_WRONG = 'Incorrect password!';
-  const SUCCESS_REGISTRATION = 'Registration success!';
-  const SUCCESS_UPDATED = 'User successfully updated!';
+  public const SUCCESS_REGISTRATION = 'Registration success!';
+  public const SUCCESS_UPDATED = 'User successfully updated!';
   public RegisterModel $rm;
 
   public function __construct()
@@ -45,7 +45,6 @@ class User
     if (empty($fullName))
     {
       Session::flash('name-empty', self::FULL_NAME, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
@@ -56,12 +55,10 @@ class User
     {
       $this->rm->addError('email-empty', self::EMAIL_REQUIRED);
       Session::flash('email-empty', self::EMAIL_REQUIRED, FLASH_ERROR);
-      // Session::redirect('../../httpdocs/index.php?page=register');
     }elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     {
       $this->rm->addError('email-format', self::EMAIL_FORMAT);
       Session::flash('email-format', self::EMAIL_FORMAT, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
@@ -73,11 +70,9 @@ class User
     {
       $this->rm->addError('password', self::PASSWORD_REQUIRED);
       Session::flash('password-empty', self::PASSWORD_REQUIRED, FLASH_ERROR);
-      // Session::redirect('../../httpdocs/index.php?page=register');
     } elseif (strlen($password) < 8) {
       $this->rm->addError('password-min', self::PASSWORD_MIN);
       Session::flash('password-min', self::PASSWORD_MIN, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 
@@ -89,7 +84,6 @@ class User
     if ($password !== $confirmPassword)
     {
       Session::flash('password-match', self::PASSWORD_MATCH, FLASH_ERROR);
-      Session::redirect('../../httpdocs/index.php?page=register');
     }
   }
 

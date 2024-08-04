@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 use app\models\{Db, RegisterModel};
 use app\controllers\SignUpControler;
 use app\helpers\Session;
@@ -36,6 +36,6 @@ Session::flash();
     <button type="submit" name="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Don't have an account? <a href="index.php?register" class="text-primary">Create</a>
+    Don't have an account? <a href="./?register" class="text-primary">Create</a>
   </div>
 </form>

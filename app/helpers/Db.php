@@ -23,7 +23,7 @@ class Db
   private function conect()
   {
     $this->conn = new mysqli($this->host, $this->user, $this->password, $this->dataBase);
-    $this->error = $this->conn->connect_error ?('Connection fail: '.$this->conn->connect_errno) : '';
+    $this->error = $this->conn->connect_error ? ('Connection fail: '.$this->conn->connect_errno) : '';
   }
   public function query($sql)
   {
