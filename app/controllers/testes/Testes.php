@@ -13,11 +13,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 class Testes 
 {
     public TestModel $tM;
-    protected const SUCCESS_ADDING = 'Test successfully add!';
+    protected const SUCCESS_ADDING = 'Test uspjesno dodan!';
     protected const UNSUCCESS_ADDING = 'Something went wrong!';
     protected const SUBJECT_EMPTY = 'Izaberi predmet!';
     protected const CLASS_EMPTY = 'Izaberi razred i odjeljenje!';
     protected const TERMIN_EMPTY = 'Izaberi termin!';
+    protected const SUCCESS_DELETE = 'Test je uspjesno obrisan!';
+    protected const SUCCESS_UPDATED = 'Test je uspjesno izmjenjen!';
+    protected const UNSUCCESS_UPDATED = 'Test nije izmjenjen!';
 
     public function __construct()
     {

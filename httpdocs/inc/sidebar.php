@@ -2,31 +2,31 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="./dashboard.php?main">
                 <i class="ti-shield menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="ti-palette menu-icon"></i>
-                <span class="menu-title">UI Elements</span>
+                <i class="ti-pencil-alt menu-icon"></i>
+                <span class="menu-title">Moje provjere</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="./dashboard.php?controlsView">Kontrolni</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Pismeni</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
-                <i class="ti-layout-list-post menu-icon"></i>
-                <span class="menu-title">Form elements</span>
+                <i class="ti-pencil-alt menu-icon"></i>
+                <span class="menu-title">Moje odjeljenje</span>
             </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <i class="ti-pie-chart menu-icon"></i>
                 <span class="menu-title">Charts</span>
@@ -65,6 +65,6 @@
                 <i class="ti-write menu-icon"></i>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </nav>

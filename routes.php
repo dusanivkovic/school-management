@@ -8,11 +8,15 @@ $router->get('main', '/../app/views/main.php');
 $router->get('addTest', '/../app/views/testes/create.view.php');
 $router->get('editUser', '/../app/views/users/edit.view.php');
 $router->get('logout', 'controllers/users/Login.php');
+$router->get('controlsView', '/../app/views/testes/index.php');
 
 
 $router->post('loginUser', 'controllers/users/Login.php');
 $router->post('signUpUser', 'controllers/users/Create.php');
 $router->put('saveUser', 'controllers/users/Store.php');
-$router->post('addTest', 'controllers/testes/Create.php');
+$router->post('saveTest', 'controllers/testes/Store.php');
+$router->delete('deleteTest', 'controllers/testes/Destroy.php');
+$router->patch('editTest', '/../app/views/testes/edit.view.php');
+$router->patch('updateTest', 'controllers/testes/Edit.php');
 
 

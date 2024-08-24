@@ -33,4 +33,40 @@ class TestModel extends Db
 
         return $testes;
     }
+
+    public function deleteTest ($id): bool
+    {
+        $sql = "DELETE FROM testes WHERE id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('i', $id);
+        //$stmt->close();
+        return $this->db->stmt->execute() ? true : false;
+    }
+
+    public function findTestById ($id)
+    {
+        $sql = "SELECT * FROM testes WHERE id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $test = $result->fetch_assoc();
+        $stmt->close();
+
+        return $result->num_rows > 0 ? $test : false;
+    }
+
+    public function updateTest ($subject, $class, $testType, $termin, $id)
+    {
+        $subject = $this->db->conn->real_escape_string($subject);
+        $class = $this->db->conn->real_escape_string($class);
+        $testType = $this->db->conn->real_escape_string($testType);
+        $termin = $this->db->conn->real_escape_string($termin);
+
+        $sql = "UPDATE testes SET subject = ?, class = ?, test_type = ?, termin = ?  WHERE id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('ssssi', $subject, $class, $testType, $termin, $id);
+
+        return $this->db->stmt->execute() ? true : false;
+    }
 }

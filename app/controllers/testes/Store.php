@@ -1,5 +1,6 @@
 <?php
-namespace app\controllers\testes;
+// namespace app\controllers\testes;
+use app\controllers\testes\Testes;
 use app\helpers\Session;
 use app\models\TestModel;
 
@@ -47,7 +48,7 @@ class CreateTest extends Testes
 }
 
 $test = new CreateTest ();
-if (isset($_POST['addTest']))
+if (isset($_POST['saveTest']))
 {
     $test->addTest();
     $test::PrintTets();

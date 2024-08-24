@@ -3,14 +3,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 $subjects = require_once __DIR__ . '/../../../subjects.php';
 use app\helpers\Session;
 use app\models\RegisterModel;
+use app\controllers\testes\Edit;
+use app\controllers\testes\Testes;
 
 $classes = ['Разред', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
 $rm = new RegisterModel();
 $user = $rm->findUserByUserId(Session::get('userId'));
-$arr = str_split($user['class_teacher']);
-$department = array_pop($arr);
-$class = implode('', $arr);
+
 $i = 1;
+$testModel = new Edit;
+if(isset($_POST['testId']))
+{
+    $testId = $_POST['testId'];
+    $test = $testModel->editTest($testId);
+    $currentSubject = $test['subject'];
+    $arr = str_split($test['class']);
+    $department = array_pop($arr);
+    $class = implode('', $arr);
+    // Session::prntR($test);
+}
 ?>
     <!-- partial -->
     <div class="main-panel">
@@ -36,14 +47,17 @@ $i = 1;
                         <div class="card-body">
                             <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here'; ?></h4>
                             <p class="card-description">Uredi provjeru</p>
-                            <form class="forms-sample" method="POST" action="dashboard.php?saveTest">
-                                <input type="hidden" name="userId" value="<?php echo $user['user_id']; ?>">
+                            <form class="forms-sample" method="POST" action="dashboard.php?updateTest">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <input type="hidden" name="testId" value="<?php echo $testId; ?>">
                                 <div class="form-group">
                                     <label for="exampleInputName1">Predmet</label>
                                     <select name="subject" class="form-control form-control-sm" id="schoolsubject">
                                         <?php foreach ($subjects as $subject) :?>
-                                        <option value="<?php echo $subject != 'Izaberi predmet' ? $subject : '' ?>">
-                                            <?php echo $subject ?>
+                                        <option value="<?php echo $subject != 'Izaberi predmet' ? $subject : '' ?>"
+                                            <?= $currentSubject == $subject ? 'selected' : '';?>
+                                        >
+                                            <?= $subject ?>
                                         </option>
                                         <?php endforeach ?>
                                     </select>
@@ -76,21 +90,23 @@ $i = 1;
                                     <label>Vrsta provjere</label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni" checked> kontrolni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni" 
+                                            <?php echo $test['testType'] == 'kontrolni' ? 'checked' : ''?>> kontrolni
                                         </div>
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"> pismeni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"
+                                            <?php echo $test['testType'] == 'pismeni' ? 'checked' : ''?>> pismeni
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label>Sedmica</label>
                                     <div class="col-md-4">
-                                        <input name="termin" type="date" class="form-control" id="testtermin" value="" min="2024-W34" max="2025-W28">
+                                        <input name="termin" type="date" class="form-control" id="testtermin" value="<?= $test['termin']?>" min="2024-W34" max="2025-W28">
                                     </div>
                                 </div>
-                                <button type="submit" name="saveTest" class="btn btn-primary me-2">Save</button>
-                                <a href="./dashboard.php?main" class="btn btn-light">Cancel</a>
+                                <button type="submit" name="update-test" class="btn btn-primary me-2">Update</button>
+                                <a href="./dashboard.php?controlsView" class="btn btn-light">Cancel</a>
                             </form>
                         </div>
                     </div>
