@@ -12,13 +12,17 @@ class TestModel extends Db
         $this->db = new Db();
     }
 
-    public function registerTest ($subject, $class, $testType, $termin, $userId ): bool
+    public function registerTest ($subject, $classes, $testType, $termin, $userId ): bool
     {
         $sql = 'INSERT INTO testes (`subject`, `class`, `test_type`, `termin`, `user_id`) VALUES (?, ?, ?, ?, ?)';
         $stmt = $this->db->query($sql);
+        foreach ($classes as $class)
+        {
         $stmt->bind_param('sssss', $subject, $class, $testType, $termin, $userId);
+        $result = $stmt->execute();
+        }
 
-        return $this->db->stmt->execute() ? true : false;
+        return $result ? true : false;
     }
 
     public function findAllTestesForUser ($id)

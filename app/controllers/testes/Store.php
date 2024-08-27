@@ -51,7 +51,5 @@ $test = new CreateTest ();
 if (isset($_POST['saveTest']))
 {
     $test->addTest();
-    $test::PrintTets();
-    Session::prntR($test->tM->data);
 }
 

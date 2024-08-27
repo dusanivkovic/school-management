@@ -34,7 +34,11 @@ class Testes
 
     public function validateData ($value): array
     {
-        $class = $value['class'] . $value['department'][0];
+        foreach ($value['department'] as $department)
+        {
+            $class[] = $value['class'] . $department;
+        }
+        // $class = $value['class'] . $value['department'][0];
         return $this->tM->data = [
             'userId' => $this->tM->db->conn->real_escape_string($value['userId']),
             'subject' => $this->tM->db->conn->real_escape_string($value['subject']),

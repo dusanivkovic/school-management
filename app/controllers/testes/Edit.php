@@ -10,7 +10,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 class Edit extends Testes 
 {
-    public function editTest ($id)
+    public function populateTest ($id)
     {
         $test = $this->tM->findTestById($id);
         return $test ? [
@@ -34,9 +34,6 @@ class Edit extends Testes
             Session::redirect('./dashboard.php?controlsView');
         }
     }
-
-
-
 }
 
 $model = new Edit();

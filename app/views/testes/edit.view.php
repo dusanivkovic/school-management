@@ -15,7 +15,7 @@ $testModel = new Edit;
 if(isset($_POST['testId']))
 {
     $testId = $_POST['testId'];
-    $test = $testModel->editTest($testId);
+    $test = $testModel->populateTest($testId);
     $currentSubject = $test['subject'];
     $arr = str_split($test['class']);
     $department = array_pop($arr);
