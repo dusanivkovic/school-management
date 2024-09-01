@@ -38,7 +38,7 @@ class Testes
         {
             $class[] = $value['class'] . $department;
         }
-        // $class = $value['class'] . $value['department'][0];
+
         return $this->tM->data = [
             'userId' => $this->tM->db->conn->real_escape_string($value['userId']),
             'subject' => $this->tM->db->conn->real_escape_string($value['subject']),
@@ -47,6 +47,7 @@ class Testes
             'termin' => $value['termin']
         ];
     }
+
     public static function PrintTets ()
     {
         Session::prntR($_POST);

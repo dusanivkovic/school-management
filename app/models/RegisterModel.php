@@ -83,6 +83,15 @@ class RegisterModel extends Db
         return $this->db->stmt->execute() ? true : false;
     }
 
+    public function editClassTeacher ($classTeacher, $userId)
+    {
+        $sql = "UPDATE teachers SET class_teacher = ? WHERE user_id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('si', $classTeacher, $userId);
+
+        return $this->db->stmt->execute() ? true : false;
+    }
+
     public function hasError ($attribute)
     {
         return $this->errors[$attribute] ?? false;

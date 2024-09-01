@@ -39,7 +39,7 @@ class Edit extends Testes
 $model = new Edit();
 if (isset ($_POST['update-test']))
 {
-    $subject = $_POST['subject'];
+    $subject = $model->tM->db->conn->real_escape_string($_POST['subject']);
     $class = $_POST['class'] . $_POST['department'][0];
     $testType = $_POST['testtype'][0];
     $termin = $_POST['termin'];

@@ -10,16 +10,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 class DeleteTest extends Testes
 {
+    public $testType;
     public function delete ($id)
     {
+        $this->testType = $this->tM->findTestById($id);
         if ($this->tM->deleteTest($id))
         {
             Session::flash('successDeleteTest', self::SUCCESS_DELETE, FLASH_SUCCESS);
-            Session::redirect('dashboard.php?controlsView');
+            $this->testType['test_type'] == 'kontrolni' ? Session::redirect('dashboard.php?controlsView') : Session::redirect('dashboard.php?writeningView');
             exit;
         }else
         {
             Session::flash('unsuccessfullyAdding', self::UNSUCCESS_ADDING, FLASH_ERROR);
+            exit;
         }
     }
 }

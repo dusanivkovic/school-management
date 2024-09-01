@@ -35,7 +35,7 @@ $i = 1;
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here'; ?></h4>
-                            <p class="card-description">Uredi provjeru</p>
+                            <p class="card-description">Dodaj provjeru</p>
                             <form class="forms-sample" method="POST" action="dashboard.php?saveTest">
                                 <input type="hidden" name="userId" value="<?php echo $user['user_id']; ?>">
                                 <div class="form-group">

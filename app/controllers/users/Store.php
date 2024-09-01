@@ -31,6 +31,19 @@ class StoreUser extends User
         exit;
         }
     }
+    public function saveClassTeacher ()
+    {
+        $this->rm->loadData($_POST);
+        $class = $this->rm->getClass() . $this->rm->getDepartment();
+        $user = Session::get('userId');
+        if ($this->rm->editClassTeacher($class, $user))
+        {
+            Session::flash('updateClassTeacher', self::SUCCESS_UPDATED, FLASH_SUCCESS);
+            Session::redirect('./dashboard.php?classesView');
+            exit;
+        }
+    }
+
 }
 
 $user = new StoreUser();
@@ -39,4 +52,8 @@ if (isset($_POST['saveUser']))
     Session::init();
     $user->saveUser();
     exit;
+}
+if (isset($_POST['update-class-teacher']))
+{
+    $user->saveClassTeacher();
 }
