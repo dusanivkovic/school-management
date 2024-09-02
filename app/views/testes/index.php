@@ -23,11 +23,11 @@ $testes = $tM->findAllTestesForUser(Session::get('userId'), $testType);
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Predmet<i class="ti-exchange-vertical text-danger text-center"></i></th>
-                                        <th>Razred</th>
-                                        <th>Termin</th>
-                                        <th>Tip testa</th>
-                                        <th>Status</th>
+                                        <th>Predmet<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                        <th>Razred<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                        <th>Termin<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                        <th>Tip testa<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                        <th>Status<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
                                         <th>Uredi ili obrisi</th>
                                     </tr>
                                 </thead>
@@ -38,9 +38,9 @@ $testes = $tM->findAllTestesForUser(Session::get('userId'), $testType);
                                         <td><?= $tM->getClass($test) ?></td>
                                         <td><?= $tM->getTermin($test) ?></td>
                                         <td><?= $tM->getTestType($test) ?></td>
-                                        <td class="text-danger"> 
+                                        <td class="<?= date('Y-m-d') < $tM->getTermin($test) ? 'text-danger' : 'text-success' ?>"> 
                                             <?= date('Y-m-d') < $tM->getTermin($test) ? 'Čekanje' : 'Održan' ?> 
-                                            <i class="ti-arrow-<?= date('Y-m-d') < $tM->getTermin($test) ? 'down' : 'up' ?>"></i>
+                                            <i class="ti-arrow-<?= date('Y-m-d') < $tM->getTermin($test) ? 'down' : 'up text-success' ?>"></i>
                                         </td>
                                         <td class="row justify-content-around">
                                             <form action="./dashboard.php?deleteTest" method="POST" class="col-4">

@@ -17,6 +17,7 @@ class CreateTest extends Testes
     public function addTest ()
     {
         $data = $this->validateData($_POST);
+        $date = new DateTimeImmutable($data['termin']);
         if (!$this->validateSubject($_POST['subject']))
         {
             Session::flash('choseSubject', self::SUBJECT_EMPTY, FLASH_WARNING);
@@ -35,7 +36,7 @@ class CreateTest extends Testes
             Session::redirect('dashboard.php?addTest');
             exit;
         }
-        if ($this->tM->registerTest($data['subject'], $data['class'], $data['testType'],$data['termin'], $data['userId'])) 
+        if ($this->tM->registerTest($data['subject'], $data['class'], $data['testType'],$date->format('Y-m-d'), $data['userId'])) 
         {
             Session::flash('successAddTest', self::SUCCESS_ADDING, FLASH_SUCCESS);
             Session::redirect('dashboard.php?main');

@@ -40,7 +40,7 @@ class TestModel extends Db
 
     public function findNextTestesForUser ($id)
     {
-        $sql = "SELECT * FROM testes WHERE user_id = ? ORDER BY DATE(termin) > DATE(NOW()) ASC LIMIT 3";
+        $sql = "SELECT * FROM testes WHERE user_id = ? AND DATE(termin) > DATE(NOW()) ORDER BY termin ASC LIMIT 3";
         $stmt = $this->db->query($sql);
         $stmt->bind_param('i', $id);
         $stmt->execute();
