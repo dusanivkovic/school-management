@@ -36,6 +36,6 @@ Session::flash();
     <button type="submit" name="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Don't have an account? <a href="./?register" class="text-primary">Create</a>
+    Nemaš nalog? <a href="./?register" class="text-primary">Kreiraj</a>
   </div>
 </form>

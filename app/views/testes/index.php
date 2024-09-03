@@ -20,7 +20,7 @@ $testes = $tM->findAllTestesForUser(Session::get('userId'), $testType);
                         </p>
                         <?php Session::flash(); ?>
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table id="data-table" class="table">
                                 <thead>
                                     <tr>
                                         <th>Predmet<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
@@ -40,7 +40,7 @@ $testes = $tM->findAllTestesForUser(Session::get('userId'), $testType);
                                         <td><?= $tM->getTestType($test) ?></td>
                                         <td class="<?= date('Y-m-d') < $tM->getTermin($test) ? 'text-danger' : 'text-success' ?>"> 
                                             <?= date('Y-m-d') < $tM->getTermin($test) ? 'Čekanje' : 'Održan' ?> 
-                                            <i class="ti-arrow-<?= date('Y-m-d') < $tM->getTermin($test) ? 'down' : 'up text-success' ?>"></i>
+                                            <i role="button" class="ti-arrow-<?= date('Y-m-d') < $tM->getTermin($test) ? 'down' : 'up text-success' ?>"></i>
                                         </td>
                                         <td class="row justify-content-around">
                                             <form action="./dashboard.php?deleteTest" method="POST" class="col-4">

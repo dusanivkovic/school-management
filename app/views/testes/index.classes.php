@@ -10,14 +10,14 @@ $i = 1;
 $tM = new TestModel;
 $rm = new RegisterModel;
 $testes = $tM->findTestByClass(Session::get('userId')) ?? [];
-
+Session::prntR(empty($testes));
 ?>
 <div class="content-wrapper">
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                    <h4 class="card-title"><?= $testes ? 'odjeljenje ' . $tM->printClass($testes)  : '' ?></h4>
+                    <h4 class="card-title"><?= !empty($testes) ? 'odjeljenje ' . $tM->printClass($testes)  : '' ?></h4>
                     <p class="card-description">
                         <form action="<?= $testes ? 'd-none' : 'dashboard.php?addClassTeacher'?>" method="POST">
                             <input type="hidden" name="_method" value="PUT">
@@ -51,14 +51,14 @@ $testes = $tM->findTestByClass(Session::get('userId')) ?? [];
                     </p>
                     <?php Session::flash(); ?>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table id="data-table" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Predmet</th>
-                                    <th>Nastavnik</th>
-                                    <th>Termin</th>
-                                    <th>Tip testa</th>
-                                    <th>Status</th>
+                                    <th>Predmet<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                    <th>Nastavnik<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                    <th>Termin<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                    <th>Tip testa<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
+                                    <th>Status<i class="ti-exchange-vertical text-primary" style="float: right"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,7 +73,10 @@ $testes = $tM->findTestByClass(Session::get('userId')) ?? [];
                                     </td>
                                     <td><?=$test['termin'] ?></td>
                                     <td><?=$test['test_type'] ?></td>
-                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
+                                    <td class="<?= date('Y-m-d') < $tM->getTermin($test) ? 'text-danger' : 'text-success' ?>"> 
+                                            <?= date('Y-m-d') < $tM->getTermin($test) ? 'Čekanje' : 'Održan' ?> 
+                                            <i role="button" class="ti-arrow-<?= date('Y-m-d') < $tM->getTermin($test) ? 'down' : 'up text-success' ?>"></i>
+                                        </td>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>

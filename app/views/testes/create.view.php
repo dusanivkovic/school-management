@@ -19,7 +19,7 @@ $i = 1;
                 <div class="col-md-12 grid-margin">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h4 class="font-weight-bold mb-0">RoyalUI Dashboard</h4>
+                            <h4 class="font-weight-bold mb-0"></h4>
                         </div>
                         <?php Session::flash(); ?>
                         <div>

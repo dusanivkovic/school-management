@@ -76,7 +76,7 @@ Session::flash();
     <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
   </div>
   <div class="text-center mt-4 font-weight-light">
-    Already have an account? <a href="./?login" class="text-primary">Login</a>
+    Već imaš nalog? <a href="./?login" class="text-primary">Login</a>
   </div>
 </form>
 

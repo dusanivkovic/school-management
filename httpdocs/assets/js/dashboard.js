@@ -1,4 +1,5 @@
 (function($) {
+
   'use strict';
   $(function() {
     if ($("#order-chart").length) {
@@ -233,4 +234,5 @@
     }
 
   });
+  
 })(jQuery);
