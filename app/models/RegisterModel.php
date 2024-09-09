@@ -92,9 +92,18 @@ class RegisterModel extends Db
         return $this->db->stmt->execute() ? true : false;
     }
 
-    public function importUserData ()
+    public function insertUserData ($array) : bool
     {
-        
+        $sql = "INSERT INTO teachers (full_name, email, password) VALUES (?, ?, ?)";
+        $stmt = $this->db->query($sql);
+
+        foreach ($array as $key => $value)
+        {
+            $stmt->bind_param('sss', $value['full_name'], $value['email'], $value['password']);
+            $result = $stmt->execute();
+        }
+
+        return $result ? true : false;
     }
 
     public function hasError ($attribute)

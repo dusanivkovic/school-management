@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/../../../vendor/autoload.php';
+    require_once __DIR__ . '/../../../teachers.php';
 
 use app\controllers\testes\Testes;
 use app\controllers\users\User;
@@ -16,6 +17,7 @@ class Admin extends User
     public function __construct()
     {
         $this->testes = new Testes();
+        parent::__construct();
     }
     public function createReport ()
     {
@@ -24,9 +26,20 @@ class Admin extends User
         // Session::redirect('./dashboard.php?main');
     }
 
+    public function importUserData ($array)
+    {
+        if ($this->rm->insertUserData($array))
+        {
+            Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
+            Session::redirect('./dashboard.php?main');
+            exit;
+        }
+    }
+
 }
 
 $testModel = new Testes();
+$admin = new Admin();
 
 if(isset($_POST['upload-btn']))
 {
@@ -42,9 +55,11 @@ if(isset($_POST['upload-btn']))
         echo "Upload failed";
     }
     Session::prntR(($_FILES));
+    Session::prntR(($teachers));
+    $admin->importUserData($teachers);
+
     exit;
 }
-$admin = new Admin();
 $admin->createReport();
 
 

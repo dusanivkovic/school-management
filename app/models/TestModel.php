@@ -18,8 +18,8 @@ class TestModel extends Db
         $stmt = $this->db->query($sql);
         foreach ($classes as $class)
         {
-        $stmt->bind_param('sssss', $subject, $class, $testType, $termin, $userId);
-        $result = $stmt->execute();
+            $stmt->bind_param('sssss', $subject, $class, $testType, $termin, $userId);
+            $result = $stmt->execute();
         }
 
         return $result ? true : false;
