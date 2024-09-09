@@ -92,6 +92,11 @@ class RegisterModel extends Db
         return $this->db->stmt->execute() ? true : false;
     }
 
+    public function importUserData ()
+    {
+        
+    }
+
     public function hasError ($attribute)
     {
         return $this->errors[$attribute] ?? false;

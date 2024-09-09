@@ -17,8 +17,8 @@ $userClass = $rm->findUserByUserId(Session::get('userId'))['class_teacher'];
         <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                    <h4 class="card-title"><?= 'Odjeljenje ' .$userClass ?? '' ?></h4>
-                    <p class="card-description <?= $userClass ? 'd-none' : '' ?>">Izaberi razred i odjeljenje</p>
+                    <h4 class="card-title"><?= empty($userClass) ? 'Izaberi razred i odjeljenje' : 'Odjeljenje ' . $userClass?></h4>
+                    <p class="card-description "><?= (!$testes and !empty($userClass)) ? 'Nema provjera za odjeljenje' : '' ?></p>
                     <p class="card-description">
                         <form action="<?= $userClass ? 'd-none' : 'dashboard.php?addClassTeacher'?>" method="POST">
                             <input type="hidden" name="_method" value="PUT">

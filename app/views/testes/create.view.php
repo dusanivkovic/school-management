@@ -10,6 +10,7 @@ $user = $rm->findUserByUserId(Session::get('userId'));
 $arr = str_split($user['class_teacher']);
 $department = array_pop($arr);
 $class = implode('', $arr);
+// $testType
 $i = 1;
 ?>
     <!-- partial -->
@@ -76,7 +77,7 @@ $i = 1;
                                     <label>Vrsta provjere</label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni" checked> kontrolni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni"> kontrolni
                                         </div>
                                         <div class="col-6">
                                             <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"> pismeni

@@ -106,4 +106,12 @@ class User
     $this->validateEmail();
     $this->validatePassword();
   }
+
+  public function getValueByKey($array, $key) {
+    if (array_key_exists($key, $array)) {
+      return $array[$key];
+    } else {
+      return "Key not found.";
+    }
+  }
 }

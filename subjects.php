@@ -1,2 +1,2 @@
 <?php
-return ["Izaberi predmet", "Srpski jezik", "Engleski jezik", "Njemački jezik", "Likovna kultura", "Muzička kultura", "Istorija", "Geografija", "Fizika", "Matematika", "Biologija", "Hemija", "Tehničko obrazovanje", "Osnovi informatike", "Priroda i društvo", "Moja okolina", "Digitalni svijet"];
+return ["Предмет", "Српски језик", "Енглески језик", "Њемачки језик", "Ликовна култура", "Музичка култура", "Историја", "Географија", "Физика", "Математика", "Биологија", "Хемија", "Техничко образовање", "Основи информатике", "Природа и друштво", "Моја околина", "Дигитални свијет"];

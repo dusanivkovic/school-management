@@ -20,7 +20,6 @@ if(isset($_POST['testId']))
     $arr = str_split($test['class']);
     $department = array_pop($arr);
     $class = implode('', $arr);
-    // Session::prntR($test);
 }
 ?>
     <!-- partial -->

@@ -38,7 +38,7 @@ class TestModel extends Db
         return $testes ?? null;
     }
 
-    public function findNextTestesForUser ($id)
+    public function findThreSoonerTestesForUser ($id)
     {
         $sql = "SELECT * FROM testes WHERE user_id = ? AND DATE(termin) > DATE(NOW()) ORDER BY termin ASC LIMIT 3";
         $stmt = $this->db->query($sql);
@@ -112,6 +112,43 @@ class TestModel extends Db
         $stmt->bind_param('ssssi', $subject, $class, $testType, $termin, $id);
 
         return $this->db->stmt->execute() ? true : false;
+    }
+
+    public function findAllTestes ()
+    {
+        $sql = "SELECT * 
+                FROM testes t1
+                JOIN teachers t2 ON t1.user_id = t2.user_id";
+        $stmt = $this->db->query($sql);
+        // $stmt->bind_param('is', $id, $testType);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        // $testes = $result->fetch_all(MYSQLI_ASSOC);
+        // Check if there are results
+        if ($result->num_rows > 0) {
+            $data = array();
+
+            // Fetch all data into an array
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+
+            // Convert the data to JSON format
+            $json_data = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+            // Export the JSON data to a file
+            $file = 'output.json';
+            if (file_put_contents($file, $json_data)) {
+                echo "Data successfully exported to <a href='$file' download>Click</a>";
+            } else {
+                echo "Error exporting data to JSON file.";
+            }
+        } else {
+            echo "No records found.";
+        }
+        $stmt->close();
+
+        return $file ?? null;
     }
 
     public function printClass($values)
