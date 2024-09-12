@@ -46,6 +46,7 @@ if(isset($_POST['testId']))
                         <div class="card-body">
                             <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here'; ?></h4>
                             <p class="card-description">Uredi provjeru</p>
+                            <p class="text-danger">U polju za unos sedmice označi prvi dan sedmice u kojoj imaš provjeru.</p>
                             <form class="forms-sample" method="POST" action="dashboard.php?updateTest">
                                 <input type="hidden" name="_method" value="PATCH">
                                 <input type="hidden" name="testId" value="<?php echo $testId; ?>">
@@ -90,11 +91,11 @@ if(isset($_POST['testId']))
                                     <div class="row">
                                         <div class="col-6">
                                             <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni" 
-                                            <?php echo $test['testType'] == 'kontrolni' ? 'checked' : ''?>> kontrolni
+                                            <?php echo $test['testType'] == 'контролни' ? 'checked' : ''?>> kontrolni
                                         </div>
                                         <div class="col-6">
                                             <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"
-                                            <?php echo $test['testType'] == 'pismeni' ? 'checked' : ''?>> pismeni
+                                            <?php echo $test['testType'] == 'писмени' ? 'checked' : ''?>> pismeni
                                         </div>
                                     </div>
                                 </div>

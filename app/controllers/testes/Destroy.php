@@ -17,7 +17,7 @@ class DeleteTest extends Testes
         if ($this->tM->deleteTest($id))
         {
             Session::flash('successDeleteTest', self::SUCCESS_DELETE, FLASH_SUCCESS);
-            $this->testType['test_type'] == 'kontrolni' ? Session::redirect('dashboard.php?controlsView') : Session::redirect('dashboard.php?writeningView');
+            $this->testType['test_type'] == 'контролни' ? Session::redirect('dashboard.php?controlsView') : Session::redirect('dashboard.php?writeningView');
             exit;
         }else
         {

@@ -6,7 +6,7 @@ use app\models\TestModel;
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['query'] ?? '';
 $tM = new TestModel;
-$testType = $uri == 'controlsView' ? 'kontrolni' : 'pismeni' ;
+$testType = $uri == 'controlsView' ? 'контролни' : 'писмени' ;
 $testes = $tM->findAllTestesForUser(Session::get('userId'), $testType);
 ?>
     <div class="content-wrapper">

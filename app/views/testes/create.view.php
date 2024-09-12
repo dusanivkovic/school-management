@@ -36,7 +36,8 @@ $i = 1;
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here'; ?></h4>
-                            <p class="card-description">Dodaj provjeru</p>
+                            <h5 class="card-description">Dodaj provjeru</h5>
+                            <p class="text-danger">U polju za unos sedmice označi prvi dan sedmice u kojoj imaš provjeru.</p>
                             <form class="forms-sample" method="POST" action="dashboard.php?saveTest">
                                 <input type="hidden" name="userId" value="<?php echo $user['user_id']; ?>">
                                 <div class="form-group">
@@ -77,10 +78,10 @@ $i = 1;
                                     <label>Vrsta provjere</label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni"> kontrolni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="контролни"> kontrolni
                                         </div>
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"> pismeni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="писмени"> pismeni
                                         </div>
                                     </div>
                                 </div>

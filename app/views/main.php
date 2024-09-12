@@ -8,8 +8,8 @@
     $tM = new TestModel();
     $userModel = new User();
     $userId = Session::get('userId');
-    $numberControlTestes = count($tM->findAllTestesForUser($userId, 'kontrolni'));
-    $numberWriteningTestes = count($tM->findAllTestesForUser($userId, 'pismeni'));
+    $numberControlTestes = count($tM->findAllTestesForUser($userId, 'контролни'));
+    $numberWriteningTestes = count($tM->findAllTestesForUser($userId, 'писмени'));
     $testes = $tM->findThreSoonerTestesForUser($userId);
     $user = $userModel->rm->findUserByUserId($userId);
     $isAdmin = $userModel->getValueByKey($user, 'email') === 'dusan.ivkovic@skolers.org' ? true : false;

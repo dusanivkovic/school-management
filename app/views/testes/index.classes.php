@@ -10,6 +10,7 @@ $i = 1;
 $tM = new TestModel;
 $rm = new RegisterModel;
 $testes = $tM->findTestByClass(Session::get('userId')) ?? [];
+
 $userClass = $rm->findUserByUserId(Session::get('userId'))['class_teacher'];
 ?>
 <div class="content-wrapper">
