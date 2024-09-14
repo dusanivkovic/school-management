@@ -1,5 +1,5 @@
 <?php
-// namespace app\controllers\testes;
+
 use app\controllers\testes\Testes;
 use app\helpers\Session;
 use app\models\TestModel;

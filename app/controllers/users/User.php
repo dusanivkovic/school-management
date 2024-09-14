@@ -23,6 +23,7 @@ class User
   protected const PASSWORD_WRONG = 'Incorrect password!';
   public const SUCCESS_REGISTRATION = 'Registration success!';
   public const SUCCESS_UPDATED = 'User successfully updated!';
+  public const UNSUCCESS_UPDATED = 'User unsuccessfully updated!';
   public RegisterModel $rm;
 
   public function __construct()

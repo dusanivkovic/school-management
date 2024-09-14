@@ -30,7 +30,7 @@ class Edit extends Testes
             Session::redirect('./dashboard.php?controlsView');
         }else
         {
-            Session::flash('updateTest', self::SUCCESS_UPDATED, FLASH_SUCCESS);
+            Session::flash('updateTest', self::UNSUCCESS_UPDATED, FLASH_WARNING);
             Session::redirect('./dashboard.php?controlsView');
         }
     }

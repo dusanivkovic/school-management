@@ -106,6 +106,16 @@ class RegisterModel extends Db
         return $result ? true : false;
     }
 
+    public function editVisitTermin ($termin, $id) : bool
+    {
+        $sql = "UPDATE teachers  SET visit_termin  = ? WHERE user_id = ?";
+        $stmt = $this->db->query($sql);
+        $stmt->bind_param('si', $termin, $id);
+        $result = $stmt->execute();
+        // $stmt->close();
+        return $result ? true : false;
+    }
+
     public function hasError ($attribute)
     {
         return $this->errors[$attribute] ?? false;
