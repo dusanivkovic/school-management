@@ -39,8 +39,11 @@ if (isset($_POST['saveTermin']))
 {
 
     $day = $_POST['day'];
-    $hour = $_POST['hours'];
-    $minute = $_POST['minutes'];
-    $termin = $day . ' ' . $hour . ':' . $minute;
+    $hour = intval($_POST['hours']);
+    $minute = intval($_POST['minutes']);
+    $termin = $day . ' ' . $hour . ':' . $minute; 
+    $termin = $termin . ';' . $day . ' ' . $hour + 5 . ':' .  $minute + 45;
+    // Session::prntR($termin);
+    // Exit;
     $visit->storeVisitTermin($termin, $userId);
 }

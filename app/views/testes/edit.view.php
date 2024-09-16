@@ -90,11 +90,11 @@ if(isset($_POST['testId']))
                                     <label>Vrsta provjere</label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="kontrolni" 
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="контролни" 
                                             <?php echo $test['testType'] == 'контролни' ? 'checked' : ''?>> kontrolni
                                         </div>
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="pismeni"
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="писмени"
                                             <?php echo $test['testType'] == 'писмени' ? 'checked' : ''?>> pismeni
                                         </div>
                                     </div>
