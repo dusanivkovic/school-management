@@ -78,7 +78,7 @@ $i = 1;
                                     <label>Vrsta provjere</label>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="контролни"> kontrolni
+                                            <input name="testtype[]" type="radio" class="form-check-input mx-1" value="контролни" checked> kontrolni
                                         </div>
                                         <div class="col-6">
                                             <input name="testtype[]" type="radio" class="form-check-input mx-1" value="писмени"> pismeni

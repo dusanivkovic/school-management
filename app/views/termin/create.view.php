@@ -31,24 +31,55 @@ $days = ['понедјељак', 'уторак', 'сриједа', 'четврт
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo isset($user) ? $user['full_name'] : 'Your name here'; ?></h4>
-                            <h5 class="card-description">Dodaj termin</h5>
+                            <h5 class="card-description text-danger">Dodaj termine samo za prvu smjenu</h5>
                             <form class="forms-sample" method="POST" action="dashboard.php?editTermin">
                                 <input type="hidden" name="userId" value="<?php echo $user['user_id']; ?>">
-                                <div class="form-group col-md-4">
-                                    <label for="exampleInputName1">Dan</label>
-                                    <select name="day" class="form-control form-control-sm" id="schoolsubject">
-                                        <?php foreach ($days as $day) :?>
-                                            <option value="<?= $day?>"><?= $day?></option>
-                                        <?php endforeach ?>
-                                    </select>
+                                <h5>Prvi termin</h5>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputName1">Dan</label>
+                                        <select name="day[]" class="form-control form-control-sm" id="schoolsubject">
+                                            <?php foreach ($days as $day) :?>
+                                                <option value="<?= $day?>"><?= $day?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Početak termina</label>
+                                        <input name="hours-start[]" type="number" min="00" max="23" placeholder="Sati" class="form-control form-control-sm">
+                                        <label>Minuti</label>
+                                        <input  name="minutes-start[]" type="number" min="00" max="59" placeholder="Minuta" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Završetak termina</label>
+                                        <input name="hours-end[]" type="number" min="00" max="23" placeholder="Sati" class="form-control form-control-sm">
+                                        <label>Minuti</label>
+                                        <input  name="minutes-end[]" type="number" min="00" max="59" placeholder="Minuta" class="form-control form-control-sm">
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label>Sati</label>
-                                    <input name="hours" type="number" min="00" max="23" placeholder="23" class="form-control form-control-sm">
-                                    <label>Minuti</label>
-                                    <input  name="minutes" type="number" min="00" max="59" placeholder="00" class="form-control form-control-sm">
+                                <h5>Drugi termin</h5>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputName1">Dan</label>
+                                        <select name="day[]" class="form-control form-control-sm" id="schoolsubject">
+                                            <?php foreach ($days as $day) :?>
+                                                <option value="<?= $day?>"><?= $day?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Početak termina</label>
+                                        <input name="hours-start[]" type="number" min="00" max="23" placeholder="Sati" class="form-control form-control-sm">
+                                        <label>Minuti</label>
+                                        <input  name="minutes-start[]" type="number" min="00" max="59" placeholder="Minuta" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Završetak termina</label>
+                                        <input name="hours-end[]" type="number" min="00" max="23" placeholder="Sati" class="form-control form-control-sm">
+                                        <label>Minuti</label>
+                                        <input  name="minutes-end[]" type="number" min="00" max="59" placeholder="Minuta" class="form-control form-control-sm">
+                                    </div>
                                 </div>
-
                                 <button type="submit" name="saveTermin" class="btn btn-primary me-2">Save</button>
                                 <a href="./dashboard.php?main" class="btn btn-light">Cancel</a>
                             </form>

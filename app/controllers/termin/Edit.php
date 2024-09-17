@@ -37,13 +37,18 @@ $userId = Session::get('userId');
 
 if (isset($_POST['saveTermin']))
 {
-
-    $day = $_POST['day'];
-    $hour = intval($_POST['hours']);
-    $minute = intval($_POST['minutes']);
-    $termin = $day . ' ' . $hour . ':' . $minute; 
-    $termin = $termin . ';' . $day . ' ' . $hour + 5 . ':' .  $minute + 45;
-    // Session::prntR($termin);
-    // Exit;
+    $termin = '';
+    for ($i = 0; $i < 2; $i++)
+    {
+        $day = $_POST['day'][$i];
+        $hourStart = $_POST['hours-start'][$i];
+        $minuteStart = $_POST['minutes-start'][$i];
+        $hourEnd = $_POST['hours-end'][$i];
+        $minuteEnd = $_POST['minutes-end'][$i];
+        if (!empty($hourStart) and !empty($minuteStart))
+        {
+            $termin = $termin ."$day $hourStart:$minuteStart - $hourEnd:$minuteEnd, "; 
+        }
+    }
     $visit->storeVisitTermin($termin, $userId);
 }

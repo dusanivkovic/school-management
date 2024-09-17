@@ -13,6 +13,7 @@
     $testes = $tM->findThreSoonerTestesForUser($userId);
     $user = $userModel->rm->findUserByUserId($userId);
     $isAdmin = $userModel->getValueByKey($user, 'email') === 'dusan.ivkovic@skolers.org' ? true : false;
+    $visitTermins = explode(',', $user['visit_termin']);
 ?>
     <!-- partial -->
     <div class="main-panel">
@@ -99,7 +100,10 @@
                                     <i class="ti-plus"></i>
                                 </a>
                         </div>  
-                        <p class="mb-0 mt-2 text-success">Moji termini: <br><span class="text-black ms-1"><small><?= $user['visit_termin'] ?? 'Nisi dodao termin' ?></small></span></p>
+                        <p class="mb-0 mt-2"><strong>Moji termini: </strong></p>
+                            <?php foreach($visitTermins as $termin) : ?>
+                                <span class="text-black ms-1"><small><?= !$termin ? 'Nema dodatih termina' : $termin ?></small><br></span>
+                            <?php endforeach ?>
                     </div>
                     </div>
                 </div>
