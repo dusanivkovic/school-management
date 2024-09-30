@@ -8,7 +8,7 @@ $router->post('admin', 'controllers/users/Admin.php');
 $router->get('main', '/../app/views/main.php');
 $router->get('addTest', '/../app/views/testes/create.view.php');
 $router->get('editUser', '/../app/views/users/edit.view.php');
-$router->get('addVisitTermin', '/../app/views/termin/create.view.php');
+$router->get('addVisitTermin', '/../app/views/termin/edit.view.php');
 $router->get('logout', 'controllers/users/Login.php');
 $router->get('classesView', '/../app/views/testes/index.classes.php');
 $router->get('controlsView', '/../app/views/testes/index.php');

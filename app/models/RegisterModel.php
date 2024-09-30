@@ -116,6 +116,39 @@ class RegisterModel extends Db
         return $result ? true : false;
     }
 
+    public function exportVisitTermin ()
+    {
+        $sql = "SELECT full_name, class_teacher, visit_termin FROM teachers";
+        $stmt = $this->db->query($sql);
+        //$stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $data = array();
+
+            // Fetch all data into an array
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+
+            // Convert the data to JSON format
+            $json_data = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+            // Export the JSON data to a file
+            $file = 'output.json';
+            if (file_put_contents($file, $json_data)) {
+                echo "Data successfully exported to <a href='$file' download>Click</a>";
+            } else {
+                echo "Error exporting data to JSON file.";
+            }
+        } else {
+            echo "No records found.";
+        }
+        $stmt->close();
+
+        return $file ?? null;
+    }
+
     public function hasError ($attribute)
     {
         return $this->errors[$attribute] ?? false;

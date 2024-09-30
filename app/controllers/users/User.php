@@ -21,9 +21,10 @@ class User
   protected const USER_EXISTS = 'Username or email already taken!';
   protected const USER_UNKNOWN = 'Username with that email does not exists!';
   protected const PASSWORD_WRONG = 'Incorrect password!';
-  public const SUCCESS_REGISTRATION = 'Registration success!';
-  public const SUCCESS_UPDATED = 'User successfully updated!';
+  public const SUCCESS_REGISTRATION = 'Registracija uspješna!';
+  public const SUCCESS_UPDATED = 'Korisnik uspješno ažuriran!';
   public const UNSUCCESS_UPDATED = 'User unsuccessfully updated!';
+  public const SUCCESS_EXPORT = 'Podaci uspješno izvezeni!';
   public RegisterModel $rm;
 
   public function __construct()

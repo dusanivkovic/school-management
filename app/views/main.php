@@ -21,7 +21,8 @@
             <div class="row">
                 <div class="col-md-4"><?php Session::flash(); ?></div>
                 <div class="col-md-8 grid-margin">
-                    <div class="d-flex justify-content-between align-items-start <?= $isAdmin ? '' : 'd-none'?>">
+                    <div class="justify-content-between align-items-start <?= $isAdmin ? 'd-flex' : 'd-none'?>">
+                        <?php if ($isAdmin) : ?>
                         <form action="./?admin" class="forms-sample" method="POST" enctype="multipart/form-data">
                             <h5>Uvezi podatke</h5>
                             <div class="form-group">
@@ -34,12 +35,19 @@
                                 <button type="submit" name="upload-btn" class="btn btn-primary btn-icon-text btn-sm">Upload</button>
                             </div>
                         </form>
-                        <div>
-                            <div class="mb-1"><h5 class="font-weight-bold mb-0">Kreiraj izvještaj</h5></div>
-                            <a href="./?admin" type="button" class="btn btn-secondary btn-icon-text btn-sm">
-                                <i class="ti-clipboard btn-icon-prepend"></i>Report
+                        <div class="d-flex flex-column ms-1">
+                            <h5 class="font-weight-bold mb-0">Export</h5>
+                            <form action="./?admin" method="POST">
+                                <input name="termin" type="hidden" value="">
+                                <button type="submit" class="btn btn-secondary btn-icon-text btn-sm mb-1">
+                                    <i class="ti-clipboard btn-icon-prepend"></i>Termini
+                                </button>
+                            </form>
+                            <a href="./?admin" type="button" class="btn btn-secondary btn-icon-text btn-sm mb-1">
+                                <i class="ti-clipboard btn-icon-prepend"></i>Testovi
                             </a>
                         </div>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

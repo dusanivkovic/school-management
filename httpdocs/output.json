@@ -1,145 +1,52 @@
 [
     {
-        "id": 166,
-        "subject": "Музичка култура",
-        "class": "IV1",
-        "test_type": "писмени",
-        "termin": "2024-10-11",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
+        "full_name": "Jelena P",
+        "class_teacher": "Izaberi ra",
+        "visit_termin": null
     },
     {
-        "id": 167,
-        "subject": "Музичка култура",
-        "class": "IV3",
-        "test_type": "писмени",
-        "termin": "2024-10-11",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
+        "full_name": "Saška Vilić",
+        "class_teacher": "IV4",
+        "visit_termin": null
     },
     {
-        "id": 168,
-        "subject": "Музичка култура",
-        "class": "IV4",
-        "test_type": "писмени",
-        "termin": "2024-10-11",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 169,
-        "subject": "Музичка култура",
-        "class": "IV5",
-        "test_type": "писмени",
-        "termin": "2024-10-11",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 170,
-        "subject": "Енглески језик",
-        "class": "II1",
-        "test_type": "контролни",
-        "termin": "2024-10-12",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 171,
-        "subject": "Енглески језик",
-        "class": "II2",
-        "test_type": "контролни",
-        "termin": "2024-10-12",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 172,
-        "subject": "Енглески језик",
-        "class": "II3",
-        "test_type": "контролни",
-        "termin": "2024-10-12",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 173,
-        "subject": "Српски језик",
-        "class": "VII1",
-        "test_type": "контролни",
-        "termin": "2024-10-10",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 174,
-        "subject": "Географија",
-        "class": "VII1",
-        "test_type": "контролни",
-        "termin": "2024-10-12",
-        "user_id": 55,
-        "full_name": "Алексић Бранкица",
-        "email": "aleksic.brankica@skolers.org",
-        "password": "$2y$10$85hIGWWTOA79zJ\/ys5y0vuaXo7Hn3\/nTKURcEJSx88CErM2ocRqS6",
-        "class_teacher": "VII1",
-        "visit_termin": ""
-    },
-    {
-        "id": 183,
-        "subject": "Српски језик",
-        "class": "III1",
-        "test_type": "pismeni",
-        "termin": "2024-10-04",
-        "user_id": 44,
         "full_name": "Dusan Ivkovic",
-        "email": "dusan.ivkovic@skolers.org",
-        "password": "$2y$10$W6rzRLFixpQhTfwrFGYYiuD8gTXoDJB73vSw7Ok9ktXOPADG8rCb2",
-        "class_teacher": "",
-        "visit_termin": "уторак 11:5;уторак 16:50"
+        "class_teacher": "IV2",
+        "visit_termin": null
     },
     {
-        "id": 186,
-        "subject": "Енглески језик",
-        "class": "VIII3",
-        "test_type": "контролни",
-        "termin": "2024-10-12",
-        "user_id": 44,
-        "full_name": "Dusan Ivkovic",
-        "email": "dusan.ivkovic@skolers.org",
-        "password": "$2y$10$W6rzRLFixpQhTfwrFGYYiuD8gTXoDJB73vSw7Ok9ktXOPADG8rCb2",
+        "full_name": "Adrijana Sarcevic",
+        "class_teacher": "VII2",
+        "visit_termin": null
+    },
+    {
+        "full_name": "Наташа Звјерац",
+        "class_teacher": "IV2",
+        "visit_termin": null
+    },
+    {
+        "full_name": "Деспот Субић",
+        "class_teacher": "III5",
+        "visit_termin": null
+    },
+    {
+        "full_name": "Јанко Веселиновић",
+        "class_teacher": "II3",
+        "visit_termin": null
+    },
+    {
+        "full_name": "Душан Ивковић",
+        "class_teacher": "II1",
+        "visit_termin": "уторак 08:15 - 09:05, "
+    },
+    {
+        "full_name": "Зорана Миљковић",
         "class_teacher": "",
-        "visit_termin": "уторак 11:5;уторак 16:50"
+        "visit_termin": null
+    },
+    {
+        "full_name": "Јанко Веселиновић",
+        "class_teacher": "",
+        "visit_termin": null
     }
 ]

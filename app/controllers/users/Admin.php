@@ -19,11 +19,18 @@ class Admin extends User
         $this->testes = new Testes();
         parent::__construct();
     }
-    public function createReport ()
+    public function exportTermin ()
     {
-        $testes = $this->testes->tM->findAllTestes();
-        Session::flash('successRegistration', self::SUCCESS_REGISTRATION, FLASH_SUCCESS);
-        // Session::redirect('./dashboard.php?main');
+        $this->rm->exportVisitTermin();
+        Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
+        //Session::redirect('./dashboard.php?main');
+    }
+
+    public function exportTest ()
+    {
+        $this->testes->tM->findAllTestes();
+        Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
+        //Session::redirect('./dashboard.php?main');
     }
 
     public function importUserData ($array)
@@ -60,6 +67,14 @@ if(isset($_POST['upload-btn']))
 
     exit;
 }
-$admin->createReport();
+
+if (isset($_POST['termin']))
+{
+    Session::prntR($_POST);
+    $admin->exportTermin();
+    exit;
+}
+
+$admin->exportTest();
 
 
