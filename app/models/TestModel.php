@@ -120,10 +120,9 @@ class TestModel extends Db
                 FROM testes t1
                 JOIN teachers t2 ON t1.user_id = t2.user_id";
         $stmt = $this->db->query($sql);
-        // $stmt->bind_param('is', $id, $testType);
         $stmt->execute();
         $result = $stmt->get_result();
-        // $testes = $result->fetch_all(MYSQLI_ASSOC);
+
         // Check if there are results
         if ($result->num_rows > 0) {
             $data = array();
@@ -139,9 +138,8 @@ class TestModel extends Db
             // Export the JSON data to a file
             $file = 'output.json';
             if (file_put_contents($file, $json_data)) {
-                echo "Data successfully exported to <a href='$file' download>Click</a>";
-            } else {
-                echo "Error exporting data to JSON file.";
+                //echo "Data successfully exported to <a href='$file' download>Click</a>";
+                self::exportJson($file, $json_data);
             }
         } else {
             echo "No records found.";
@@ -182,5 +180,25 @@ class TestModel extends Db
     public function setClass($class): void
     {
         $this['class'] = $class;
+    }
+
+    public static function exportJson ($output, $data)
+    {
+        // Ensure no prior output before sending headers
+        if (!headers_sent()) {
+            // Set headers to force download
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/json');
+            header('Content-Disposition: attachment; filename="' . basename($output) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($output));
+
+            // Clear output buffer and read the file to send it to the browser for download
+            flush();
+            readfile($output);
+            exit;
+        }
     }
 }

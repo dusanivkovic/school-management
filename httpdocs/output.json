@@ -2,51 +2,681 @@
     {
         "full_name": "Jelena P",
         "class_teacher": "Izaberi ra",
-        "visit_termin": null
+        "visit_termin": ""
     },
     {
         "full_name": "Saška Vilić",
         "class_teacher": "IV4",
-        "visit_termin": null
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Dragana Ili",
+        "class_teacher": "IV5",
+        "visit_termin": ""
     },
     {
         "full_name": "Dusan Ivkovic",
         "class_teacher": "IV2",
-        "visit_termin": null
+        "visit_termin": ""
     },
     {
         "full_name": "Adrijana Sarcevic",
         "class_teacher": "VII2",
-        "visit_termin": null
+        "visit_termin": ""
     },
     {
-        "full_name": "Наташа Звјерац",
+        "full_name": "Natasa Z",
         "class_teacher": "IV2",
-        "visit_termin": null
+        "visit_termin": ""
     },
     {
-        "full_name": "Деспот Субић",
-        "class_teacher": "III5",
-        "visit_termin": null
+        "full_name": "Despot Subic",
+        "class_teacher": "III1",
+        "visit_termin": ""
     },
     {
-        "full_name": "Јанко Веселиновић",
-        "class_teacher": "II3",
-        "visit_termin": null
+        "full_name": "Zorana Miljkovic",
+        "class_teacher": "V1",
+        "visit_termin": ""
     },
     {
-        "full_name": "Душан Ивковић",
-        "class_teacher": "II1",
-        "visit_termin": "уторак 08:15 - 09:05, "
-    },
-    {
-        "full_name": "Зорана Миљковић",
+        "full_name": "Dusan Ivkovic",
         "class_teacher": "",
-        "visit_termin": null
+        "visit_termin": "уторак 10:15 - 11:00, "
     },
     {
-        "full_name": "Јанко Веселиновић",
+        "full_name": "Аксентић Драгица",
         "class_teacher": "",
-        "visit_termin": null
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Алексић Бранкица",
+        "class_teacher": "VII1",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Аљетић Бајић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Анђелић Свјетлана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Аничић Жарко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Бјелошевић Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Васић Бојана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Веселиновић Љубислав",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Глишић Љиљана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Голубовић Миљка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Грмуша Бранка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Давидовић Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Данојевић Биљана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Драгић Дајана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Дрљача Петар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурашиновић Александар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурашиновић Бојана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурђевић Стојан",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Зеленика Мирјана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Иванковић Бошко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Илић Жељка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Јелић Марио",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Јолџић Арија",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Квргић Дијана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ковач Душица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ковачевић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Колунџија Жељка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Кондић Сузана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Кукић Миља",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Макивић Јовица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малбашић Мила",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малетић Кристина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малеш Јелена",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малић Ђукић Горана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Марчета Савка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Мијић Андријана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Милашиновић Милка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Митровић Николина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Михаљчић Тања",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "МИШЧЕВИЋ ЈЕЛЕНА",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Николић Јована",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Павичар Александар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Поповић Гордана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Пралица Младен",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Рачић Ацо",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Савановић Леонида",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Секуловић Огњен",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Скендерија Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Сладојевић Жељко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Стијаковић Дарко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Субић Деспот",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Тодоровић Валентина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Топић Далиборка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ћеркета Татјана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ћирић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Хоџић Алмир",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Цигановић Зорица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Црепуља Бранислава",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Црнић Милорад",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Шиканић Бранкица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "уторак 11:15"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "уторак 11:15"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "сриједа 10:20"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "понедјељак"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "понедјељак"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "pponedjeljak"
+    },
+    {
+        "full_name": "",
+        "class_teacher": "",
+        "visit_termin": "pponedjeljak"
+    },
+    {
+        "full_name": "Аксентић Драгица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Алексић Бранкица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Аљетић Бајић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Анђелић Свјетлана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Аничић Жарко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Бјелошевић Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Васић Бојана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Веселиновић Љубислав",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Глишић Љиљана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Голубовић Миљка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Грмуша Бранка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Давидовић Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Данојевић Биљана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Драгић Дајана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Дрљача Петар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурашиновић Александар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурашиновић Бојана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ђурђевић Стојан",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Зеленика Мирјана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Иванковић Бошко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Илић Жељка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Јелић Марио",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Јолџић Арија",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Квргић Дијана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ковач Душица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ковачевић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Колунџија Жељка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Кондић Сузана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Кукић Миља",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Макивић Јовица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малбашић Мила",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малетић Кристина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малеш Јелена",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Малић Ђукић Горана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Марчета Савка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Мијић Андријана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Милашиновић Милка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Митровић Николина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Михаљчић Тања",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "МИШЧЕВИЋ ЈЕЛЕНА",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Николић Јована",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Павичар Александар",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Поповић Гордана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Пралица Младен",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Рачић Ацо",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Савановић Леонида",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Секуловић Огњен",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Скендерија Драгана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Сладојевић Жељко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Стијаковић Дарко",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Субић Деспот",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Тодоровић Валентина",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Топић Далиборка",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ћеркета Татјана",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Ћирић Весна",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Хоџић Алмир",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Цигановић Зорица",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Црепуља Бранислава",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Црнић Милорад",
+        "class_teacher": "",
+        "visit_termin": ""
+    },
+    {
+        "full_name": "Шиканић Бранкица",
+        "class_teacher": "",
+        "visit_termin": ""
     }
 ]

@@ -20,8 +20,9 @@ $userClass = $rm->findUserByUserId(Session::get('userId'))['class_teacher'];
                     <div class="card-body">
                     <h4 class="card-title"><?= empty($userClass) ? 'Izaberi razred i odjeljenje' : 'Odjeljenje ' . $userClass?></h4>
                     <p class="card-description "><?= (!$testes and !empty($userClass)) ? 'Nema provjera za odjeljenje' : '' ?></p>
+                    <?php if (!$userClass) : ?>
                     <p class="card-description">
-                        <form action="<?= $userClass ? 'd-none' : 'dashboard.php?addClassTeacher'?>" method="POST">
+                        <form action="dashboard.php?addClassTeacher" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
                                 <label class="<?= $userClass ? 'd-none' : ''?>">Razred</label>
@@ -51,6 +52,7 @@ $userClass = $rm->findUserByUserId(Session::get('userId'))['class_teacher'];
                             <a href="./dashboard.php?main" class="btn btn-light <?= $userClass ? 'd-none' : ''?>">Cancel</a>
                         </form>
                     </p>
+                    <?php endif ?>
                     <?php Session::flash(); ?>
                     <div class="table-responsive">
                         <table id="data-table" class="table table-hover">

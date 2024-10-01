@@ -25,6 +25,7 @@ class User
   public const SUCCESS_UPDATED = 'Korisnik uspješno ažuriran!';
   public const UNSUCCESS_UPDATED = 'User unsuccessfully updated!';
   public const SUCCESS_EXPORT = 'Podaci uspješno izvezeni!';
+  public const UNSUCCESS_EXPORT = 'Error exporting data to JSON file.';
   public RegisterModel $rm;
 
   public function __construct()

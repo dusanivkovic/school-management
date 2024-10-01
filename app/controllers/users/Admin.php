@@ -21,16 +21,23 @@ class Admin extends User
     }
     public function exportTermin ()
     {
-        $this->rm->exportVisitTermin();
-        Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
-        //Session::redirect('./dashboard.php?main');
+        if ($this->rm->exportVisitTermin() != null)
+        {
+            Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
+        }else {
+            Session::flash('unsuccessExport', self::UNSUCCESS_EXPORT, FLASH_ERROR);
+        }
+
     }
 
     public function exportTest ()
     {
-        $this->testes->tM->findAllTestes();
-        Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
-        //Session::redirect('./dashboard.php?main');
+        if ($this->testes->tM->findAllTestes())
+        {
+            Session::flash('successRegistration', self::SUCCESS_EXPORT, FLASH_SUCCESS);
+        }else {
+            Session::flash('unsuccessExport', self::UNSUCCESS_EXPORT, FLASH_ERROR);
+        }
     }
 
     public function importUserData ($array)

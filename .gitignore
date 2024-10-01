@@ -1,4 +1,5 @@
 /httpdocs/assets/node_modules
+/httpdocs/output.json
 /notes.txt
 /vendor/
 /.vscode
