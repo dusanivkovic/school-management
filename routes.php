@@ -15,6 +15,7 @@ $router->get('controlsView', '/../app/views/testes/index.php');
 $router->get('writeningView', '/../app/views/testes/index.php');
 
 
+
 $router->post('loginUser', 'controllers/users/Login.php');
 $router->post('signUpUser', 'controllers/users/Create.php');
 $router->put('saveUser', 'controllers/users/Store.php');
